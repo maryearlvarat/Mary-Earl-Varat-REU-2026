@@ -4,7 +4,7 @@
 library(remotes)
 
 install_github("DOI-USGS/dataRetrieval",
-               ref = "develop")
+               ref = "develop") # this is the development version, which may be buggy (could use "main" instead)
 
 # load packages----
 library("dataRetrieval")
@@ -23,6 +23,9 @@ env.data<-read_waterdata_continuous(monitoring_location_id = bb1site,#change to 
                           parameter_code = params,
                           time=c(start.date,
                                  end.date))
+# if you get a curl error -- update the curl and httr packages!
+# if you get a cli error -- update the cli package
+# can do updates when installing dataRetrieval package
 
 # organize data - note you should QAQC data before proceeding with this summarization step
 env.data2<-env.data%>%
@@ -35,7 +38,7 @@ env.data2<-env.data%>%
   dy=day(time),
   hr=hour(time))%>%
   group_by(yr,mnth,dy,hr,param)%>%
-  summarize(value=median(value,na.rm=T))%>%
+  summarize(value=median(value,na.rm=T))%>% # taking the median measurement over each hour
   pivot_wider(names_from = param,values_from = value,values_fill = NA)
 
 # save the dataset
