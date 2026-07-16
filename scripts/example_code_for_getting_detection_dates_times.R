@@ -36,8 +36,8 @@ sel.tables<-imp_raven(path="odata/BB1_Fall2024",
 
 
 # code to create a dataset of all days and hours in a deployment
-strt.dt<-ymd_hms("2026-01-01 12:00:00",tz="America/Chicago")
-end.dt<-ymd_hms("2026-01-14 12:00:00",tz="America/Chicago")
+strt.dt<-ymd_hms("2024-09-25 21:29:58",tz="America/Chicago")
+end.dt<-ymd_hms("2024-10-09 08:00:00",tz="America/Chicago")
 
 dep.dt<-data.frame(date.time=seq(strt.dt,end.dt,by="hour"))%>%
   mutate(start.mnth=month(date.time),
@@ -47,5 +47,6 @@ dep.dt<-data.frame(date.time=seq(strt.dt,end.dt,by="hour"))%>%
   left_join(sel.tables)%>%
   mutate(n.dolphins=ifelse(is.na(n.dolphins),0,n.dolphins),
          binary.dolphins=ifelse(n.dolphins==0,0,1))
+
 
          
