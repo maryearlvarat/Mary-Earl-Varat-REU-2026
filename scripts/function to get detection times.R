@@ -64,21 +64,21 @@ fall24.seltables<-getseltimes(deploy="BB1_Fall2024",
                               strt.dt<-ymd_hms("2024-09-25 21:29:58",tz="America/Chicago"),
                               end.dt<-ymd_hms("2024-10-09 08:00:00",tz="America/Chicago"))
 
-write.csv(fall24.seltables,"wdata/fall24_dolphins.csv",row.names = F)
+write.csv(fall24.seltables,"wdata/BB1fall24_dolphins.csv",row.names = F)
 
 #BB1 Summer 25
 summer25.seltables<-getseltimes(deploy="BB1_Summer25",
                               strt.dt<-ymd_hms("2025-07-21 18:00:00",tz="America/Chicago"),
                               end.dt<-ymd_hms("2025-08-04 08:00:00",tz="America/Chicago"))
-write.csv(summer25.seltables,"wdata/summer25_dolphins.csv",row.names = F)
+write.csv(summer25.seltables,"wdata/BB1summer25_dolphins.csv",row.names = F)
 #BB1 Winter 25
 winter25.seltables<-getseltimes(deploy="BB1_Winter25",
                                 strt.dt<-ymd_hms("2025-01-29 18:00:00",tz="America/Chicago"),
                                 end.dt<-ymd_hms("2025-02-17 08:00:00",tz="America/Chicago"))
-write.csv(winter25.seltables,"wdata/winter25_dolphins.csv",row.names = F)
+write.csv(winter25.seltables,"wdata/BB1winter25_dolphins.csv",row.names = F)
 
 #BB1 Spring 25
 spring25.seltables<-getseltimes(deploy="BB1_Spring25",
                                 strt.dt<-ymd_hms("2025-04-14 18:00:00",tz="America/Chicago"),
                                 end.dt<-ymd_hms("2025-04-28 08:00:00",tz="America/Chicago"))
-write.csv(spring25.seltables,"wdata/spring25_dolphins.csv",row.names = F)
+write.csv(spring25.seltables,"wdata/BB1spring25_dolphins.csv",row.names = F)
