@@ -20,7 +20,11 @@ fls<-data.frame(fls=list.files("odata/BB1_Fall2024"))%>%#this gives me a list of
 # to get the start and end time of each selection
 sel.tables<-imp_raven(path="odata/BB1_Fall2024",
                       all.data=T)%>%#this brings in all selection tables within a folder
-  left_join(fls)%>%#this joins the fls dataset onto the selection tables by the selection table name
+  left_join(fls)#this joins the fls dataset onto the selection tables by the selection table name
+
+if(!"Begin Time (s)" %in% colnames(sel.tables))sel.tables$`Begin Time (s)`<-NA
+
+seltables<-sel.tables%>%
   mutate(start.time=ifelse(is.na(`Begin Time (s)`),`Begin Time (s)1`,`Begin Time (s)`),
          start.time = fls.starttime + start.time,
          end.time=start.time+`Delta Time (s)`)%>%
