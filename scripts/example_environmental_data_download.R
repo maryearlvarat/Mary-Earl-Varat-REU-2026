@@ -15,8 +15,8 @@ bb2site<-"USGS-073802512"
 bb1site<-"USGS-07380249"
 tb1site<-"USGS-073813498"
 params=c("00480","00010","00300")# this is salinity (PPT), temperature (degrees C), and dissolved oxygen (mg/L)
-start.date<-as.POSIXct("2026-01-01 12:00:00",tz="America/Chicago")# change to match the start date/time of the deployment
-end.date<-as.POSIXct("2026-01-14 12:00:00",tz="America/Chicago")#change to match the end date/time of the deployment
+start.date<-as.POSIXct("2024-09-25 00:00:00",tz="America/Chicago")# change to match the start date/time of the deployment
+end.date<-as.POSIXct("2024-10-09 23:59:59",tz="America/Chicago")#change to match the end date/time of the deployment
 
 # download data
 env.data<-read_waterdata_continuous(monitoring_location_id = bb1site,#change to match site
@@ -41,5 +41,8 @@ env.data2<-env.data%>%
   summarize(value=median(value,na.rm=T))%>% # taking the median measurement over each hour
   pivot_wider(names_from = param,values_from = value,values_fill = NA)
 
+
+
 # save the dataset
 write.csv(env.data2,"wdata/PICKADESCRIPTIVEFILENAME.csv",row.names=F)
+
