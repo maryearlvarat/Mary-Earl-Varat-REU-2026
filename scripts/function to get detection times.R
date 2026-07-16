@@ -61,4 +61,7 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
 fall24.seltables<-getseltimes(deploy="BB1_Fall2024",
                               strt.dt<-ymd_hms("2024-09-25 21:29:58",tz="America/Chicago"),
                               end.dt<-ymd_hms("2024-10-09 08:00:00",tz="America/Chicago"))
-         
+#BB1 Summer 25
+summer25.seltables<-getseltimes(deploy="BB1_Summer25",
+                              strt.dt<-ymd_hms("2025-07-21 18:00:00",tz="America/Chicago"),
+                              end.dt<-ymd_hms("2025-08-04 08:00:00",tz="America/Chicago"))
