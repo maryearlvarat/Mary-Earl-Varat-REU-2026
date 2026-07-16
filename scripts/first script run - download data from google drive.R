@@ -30,3 +30,15 @@ for(i in 1:nrow(files)){
                  path = paste0("odata/",dep,"/",files$name[i]),
                  overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on
 }
+#BB1 Summer 25
+fid<-"https://drive.google.com/drive/folders/1ITxFkvxSvwwCID_oBsAuwf2no6EDJMdL"
+folder_id = drive_get(as_id(fid))
+files =drive_ls(folder_id)
+
+dep<-"BB1_Summer25"
+dir.create(paste0( "odata/",dep))
+for(i in 1:nrow(files)){
+  drive_download(file = files$id[i],
+                 path = paste0("odata/",dep,"/",files$name[i]),
+                 overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on
+}
