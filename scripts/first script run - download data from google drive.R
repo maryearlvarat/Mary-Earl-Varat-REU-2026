@@ -31,7 +31,7 @@ for(i in 1:nrow(files)){
                  overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on
 }
 #BB1 Summer 25
-fid<-"https://drive.google.com/drive/folders/1ITxFkvxSvwwCID_oBsAuwf2no6EDJMdL"
+fid<-"https://drive.google.com/drive/u/0/folders/1zivBEXsQIVpmXplkb1nRVQ6vRkss7YjV"
 folder_id = drive_get(as_id(fid))
 files =drive_ls(folder_id)
 
