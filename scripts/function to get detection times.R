@@ -51,7 +51,8 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
     select(-date.time)%>%
     left_join(seltables)%>%
     mutate(n.dolphins=ifelse(is.na(n.dolphins),0,n.dolphins),
-           binary.dolphins=ifelse(n.dolphins==0,0,1)) 
+           binary.dolphins=ifelse(n.dolphins==0,0,1))%>%
+    rename(mnth=start.mnth,dy=start.dy,hr=start.hr)
   return(dep.dt)
 }
 
@@ -61,6 +62,9 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
 fall24.seltables<-getseltimes(deploy="BB1_Fall2024",
                               strt.dt<-ymd_hms("2024-09-25 21:29:58",tz="America/Chicago"),
                               end.dt<-ymd_hms("2024-10-09 08:00:00",tz="America/Chicago"))
+
+write.csv(fall24.seltables,"wdata/fall24_dolphins.csv",row.names = F)
+
 #BB1 Summer 25
 summer25.seltables<-getseltimes(deploy="BB1_Summer25",
                               strt.dt<-ymd_hms("2025-07-21 18:00:00",tz="America/Chicago"),
