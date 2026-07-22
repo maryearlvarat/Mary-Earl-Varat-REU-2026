@@ -3,7 +3,7 @@
 
 library(readxl)
 #BB1 
-bb1fall2_env<-read.csv(file = "wdata/bb1fall24_env.csv")
+bb1fall24_env<-read.csv(file = "wdata/bb1fall24_env.csv")
 
 bb1winter25_env<-read.csv(file = "wdata/bb1winter25_env.csv")
 

@@ -126,7 +126,7 @@ write.csv(tb1spring25.env,"wdata/tb1spring25_env.csv",row.names=F)
 
 #TB1 Summer 25
 tb1summer25.env<-download.envdata(start.date=as.POSIXct("2025-07-28 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
-                                end.date=as.POSIXct("2024-08-11 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                end.date=as.POSIXct("2025-08-11 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
                                 site=tb1site)
 # save the dataset
 write.csv(tb1summer25.env,"wdata/tb1summer25_env.csv",row.names=F)
