@@ -1,5 +1,6 @@
 #This is the start of my project code
 
+
 library(tidyverse)
 source("scripts/install_packages_function.R")
 
@@ -44,7 +45,7 @@ for(i in 1:nrow(files)){
                  overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on
 }
 #BB1 Spring 25
-fid<-"https://drive.google.com/drive/folders/1oNIcQi-wXeCWeKiJhfNlcalXD5unJaJJ"
+fid<-"https://drive.google.com/drive/folders/1p_UJiXMv5u_cSL9V-tcqvwIKI-jAgAHw"
 folder_id = drive_get(as_id(fid))
 files =drive_ls(folder_id)
 
@@ -103,4 +104,28 @@ for(i in 1:nrow(files)){
                    path = paste0("odata/",dep,"/",files$name[i]),
                    overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
   }    
+  #LUMO6 Summer 25
+  fid<-"https://drive.google.com/drive/folders/1RQiMRwepwxjn1jDPQsr00pwUqlDadjS1"
+  folder_id = drive_get(as_id(fid))
+  files =drive_ls(folder_id)
+  
+  dep<-"LUMO6_Summer25"
+  dir.create(paste0( "odata/",dep))
+  for(i in 1:nrow(files)){
+    drive_download(file = files$id[i],
+                   path = paste0("odata/",dep,"/",files$name[i]),
+                   overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
+  } 
+  #LUMO6 Winter 25
+  fid<-"https://drive.google.com/drive/folders/1F-JK2uTXP5MNOSoePECfdivBKZUlkVS1"
+  folder_id = drive_get(as_id(fid))
+  files =drive_ls(folder_id)
+  
+  dep<-"LUMO6_Winter25"
+  dir.create(paste0( "odata/",dep))
+  for(i in 1:nrow(files)){
+    drive_download(file = files$id[i],
+                   path = paste0("odata/",dep,"/",files$name[i]),
+                   overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
+  } 
   
