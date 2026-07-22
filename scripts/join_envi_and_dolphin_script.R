@@ -91,3 +91,19 @@ summer25<-left_join(summer25_dolphins,summer25_env)%>%
 write.csv(summer25,"wdata/bb2summer25_combined.csv",row.names = F)
 
 
+#LUMO6
+
+lumo6_env<-read.csv("wdata/lumo6_env.csv")
+lumo6summer25_dolphins<-read.csv("wdata/lumo6summer25_dolphins.csv")
+lumo6summer25_combined<-left_join(lumo6summer25_dolphins,lumo6_env)%>%
+  mutate(site="LUMO6",
+         deployment="Summer")%>%
+  select(-UTC)
+
+lumo6_env<-read.csv("wdata/lumo6_env.csv")
+lumo6winter25_dolphins<-read.csv("wdata/lumo6winter25_dolphins.csv")
+lumo6winter25_combined<-left_join(lumo6winter25_dolphins,lumo6_env)%>%
+  mutate(site="LUMO6",
+         deployment="Winter")%>%
+  filter(yr==2024)%>%
+  select(-UTC)
