@@ -1,4 +1,4 @@
-# USGS Environemntal Data QAQC
+# USGS Environmental Data QAQC
 #summary
 summary(bb1fall24_env)
 summary(bb1winter25_env)
