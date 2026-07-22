@@ -118,11 +118,11 @@ tb1winter25.env<-download.envdata(start.date=as.POSIXct("2025-01-27 00:00:00",tz
 write.csv(tb1winter25.env,"wdata/tb1winter25_env.csv",row.names=F)
 
 #TB1 Spring 25
-tb1spring.env<-download.envdata(start.date=as.POSIXct("2025-04-09 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+tb1spring25.env<-download.envdata(start.date=as.POSIXct("2025-04-09 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
                                 end.date=as.POSIXct("2025-04-23 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
                                 site=tb1site)
 # save the dataset
-write.csv(tb1spring25.env,"wdata/tb1spring_env.csv",row.names=F)
+write.csv(tb1spring25.env,"wdata/tb1spring25_env.csv",row.names=F)
 
 #TB1 Summer 25
 tb1summer25.env<-download.envdata(start.date=as.POSIXct("2025-07-28 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
