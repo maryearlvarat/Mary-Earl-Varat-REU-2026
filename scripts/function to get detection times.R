@@ -60,25 +60,62 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
 #run the funtion----
 
 #BB1 Fall 24
-fall24.seltables<-getseltimes(deploy="BB1_Fall2024",
+bb1fall24.seltables<-getseltimes(deploy="bb1_Fall2024",
                               strt.dt<-ymd_hms("2024-09-25 21:29:58",tz="America/Chicago"),
                               end.dt<-ymd_hms("2024-10-09 08:00:00",tz="America/Chicago"))
 
-write.csv(fall24.seltables,"wdata/BB1fall24_dolphins.csv",row.names = F)
+write.csv(bb1fall24.seltables,"wdata/bb1fall24_dolphins.csv",row.names = F)
 
 #BB1 Summer 25
-summer25.seltables<-getseltimes(deploy="BB1_Summer25",
+bb1summer25.seltables<-getseltimes(deploy="bb1_Summer25",
                               strt.dt<-ymd_hms("2025-07-21 18:00:00",tz="America/Chicago"),
                               end.dt<-ymd_hms("2025-08-04 08:00:00",tz="America/Chicago"))
-write.csv(summer25.seltables,"wdata/BB1summer25_dolphins.csv",row.names = F)
+write.csv(bb1summer25.seltables,"wdata/bb1summer25_dolphins.csv",row.names = F)
 #BB1 Winter 25
-winter25.seltables<-getseltimes(deploy="BB1_Winter25",
+bb1winter25.seltables<-getseltimes(deploy="bb1_Winter25",
                                 strt.dt<-ymd_hms("2025-01-29 18:00:00",tz="America/Chicago"),
                                 end.dt<-ymd_hms("2025-02-17 08:00:00",tz="America/Chicago"))
-write.csv(winter25.seltables,"wdata/BB1winter25_dolphins.csv",row.names = F)
+write.csv(bb1winter25.seltables,"wdata/bb1winter25_dolphins.csv",row.names = F)
 
 #BB1 Spring 25
-spring25.seltables<-getseltimes(deploy="BB1_Spring25",
+bb1spring25.seltables<-getseltimes(deploy="bb1_Spring25",
                                 strt.dt<-ymd_hms("2025-04-14 18:00:00",tz="America/Chicago"),
                                 end.dt<-ymd_hms("2025-04-28 08:00:00",tz="America/Chicago"))
-write.csv(spring25.seltables,"wdata/BB1spring25_dolphins.csv",row.names = F)
+write.csv(bb1spring25.seltables,"wdata/bb1spring25_dolphins.csv",row.names = F)
+
+#BB2 
+#bb2 Fall 24
+bb2fall24.seltables<-getseltimes(deploy="BB2_Fall24",
+                                 strt.dt<-ymd_hms("2024-09-25 21:29:58",tz="America/Chicago"),
+                                 end.dt<-ymd_hms("2024-10-09 08:00:00",tz="America/Chicago"))
+
+write.csv(bb2fall24.seltables,"wdata/bb2fall24_dolphins.csv",row.names = F)
+
+#bb2 Summer 25
+bb2summer25.seltables<-getseltimes(deploy="bb2_Summer25",
+                                   strt.dt<-ymd_hms("2025-07-22 18:00:00",tz="America/Chicago"),
+                                   end.dt<-ymd_hms("2025-08-04 08:00:00",tz="America/Chicago"))
+write.csv(bb2summer25.seltables,"wdata/bb2summer25_dolphins.csv",row.names = F)
+#bb2 Winter 25
+bb2winter25.seltables<-getseltimes(deploy="bb2_Winter25",
+                                   strt.dt<-ymd_hms("2025-01-29 18:00:00",tz="America/Chicago"),
+                                   end.dt<-ymd_hms("2025-02-17 08:00:00",tz="America/Chicago"))
+write.csv(bb2winter25.seltables,"wdata/bb2winter25_dolphins.csv",row.names = F)
+
+#bb2 Spring 25
+bb2spring25.seltables<-getseltimes(deploy="bb2_Spring25",
+                                   strt.dt<-ymd_hms("2025-04-14 18:00:00",tz="America/Chicago"),
+                                   end.dt<-ymd_hms("2025-04-28 08:00:00",tz="America/Chicago"))
+write.csv(bb2spring25.seltables,"wdata/bb2spring25_dolphins.csv",row.names = F)
+
+#LUMO6 
+#lumo6 summer 25
+lumo6summer25.seltables<-getseltimes(deploy="lumo6_summer25",
+                                   strt.dt<-ymd_hms("2025-07-28 18:00:00",tz="America/Chicago"),
+                                   end.dt<-ymd_hms("2025-08-11 08:00:00",tz="America/Chicago"))
+write.csv(lumo6summer25.seltables,"wdata/lumo6summer25_dolphins.csv",row.names = F)
+#lumo6 winter 25 
+lumo6winter25.seltables<-getseltimes(deploy="lumo6_winter25",
+                                     strt.dt<-ymd_hms("2025-01-27 18:00:00",tz="America/Chicago"),
+                                     end.dt<-ymd_hms("2025-02-10 08:00:00",tz="America/Chicago"))
+write.csv(lumo6winter25.seltables,"wdata/lumo6winter25_dolphins.csv",row.names = F)
