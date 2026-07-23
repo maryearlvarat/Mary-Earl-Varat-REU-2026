@@ -25,6 +25,7 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
   
   # to get the start and end time of each selection
   sel.tables<-imp_raven(path=paste0("odata/",deploy),
+                        # files = fls$selec.file[13],
                         all.data=T)%>%#this brings in all selection tables within a folder
     left_join(fls)#this joins the fls dataset onto the selection tables by the selection table name
   
@@ -119,3 +120,4 @@ lumo6winter25.seltables<-getseltimes(deploy="lumo6_winter25",
                                      strt.dt<-ymd_hms("2025-01-27 18:00:00",tz="America/Chicago"),
                                      end.dt<-ymd_hms("2025-02-10 08:00:00",tz="America/Chicago"))
 write.csv(lumo6winter25.seltables,"wdata/lumo6winter25_dolphins.csv",row.names = F)
+
