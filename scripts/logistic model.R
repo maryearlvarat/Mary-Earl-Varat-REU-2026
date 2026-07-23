@@ -9,10 +9,11 @@ lp("ggeffects")
 
 
 # load data
-dts<-bind_rows(read.csv("wdata/combined_BB1fall24.csv"),
-               read.csv("wdata/combined_BB1winter25.csv"),
-               read.csv("wdata/combined_BB1spring25.csv"),
-               read.csv("wdata/combined_BB1summer25.csv"))
+# find files with combined in them
+fls<-list.files("wdata",pattern="combined")
+fls<-paste0("wdata/",fls)
+
+dts<-read_csv(fls)
 
 #look to see if there is time structure
 ggplot(data=dts%>%mutate(dt=ymd_h(paste(yr,mnth,dy,hr))))+
