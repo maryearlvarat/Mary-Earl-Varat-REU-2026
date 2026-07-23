@@ -131,3 +131,100 @@ tb1summer25.env<-download.envdata(start.date=as.POSIXct("2025-07-28 00:00:00",tz
 # save the dataset
 write.csv(tb1summer25.env,"wdata/tb1summer25_env.csv",row.names=F)
 
+
+
+#QUESTION 2 2017 envi data 
+#bb1 fall 24 isnt working
+bb1fall17.env<-download.envdata(start.date=as.POSIXct("2017-09-25 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                end.date=as.POSIXct("2017-10-09 23:59:59",tz="America/Chicago"),
+                                site=bb1site)#change to match the end date/time of the deployment
+# save the dataset
+write.csv(bb1fall17.env,"wdata/bb1fall17_env.csv",row.names=F) 
+
+
+# BB1 Spring 18
+bb1spring18.env<-download.envdata(start.date=as.POSIXct("2018-04-14 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-04-28 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb1site)
+# save the dataset
+write.csv(bb1spring18.env,"wdata/bb1spring18_env.csv",row.names=F)
+
+# Winter 25
+bb1winter18.env<-download.envdata(start.date=as.POSIXct("2018-01-29 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-02-17 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb1site)
+
+# save the dataset
+write.csv(bb1winter18.env,"wdata/bb1winter18_env.csv",row.names=F)
+
+# BB1 Spring 18
+bb1spring18.env<-download.envdata(start.date=as.POSIXct("2018-04-14 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-04-28 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb1site)
+# save the dataset
+write.csv(bb1spring18.env,"wdata/bb1spring18_env.csv",row.names=F)
+
+# BB1 Summer 18
+bb1summer18.env<-download.envdata(start.date=as.POSIXct("2018-07-21 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-08-04 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb1site)
+# save the dataset
+write.csv(bb1summer18.env,"wdata/bb1summer18_env.csv",row.names=F)
+
+#BB2 Fall 17
+bb2fall17.env<-download.envdata(start.date=as.POSIXct("2017-09-25 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                end.date=as.POSIXct("2017-10-09 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                site=bb2site)
+# save the dataset
+write.csv(bb2fall17.env,"wdata/bb2fall17_env.csv",row.names=F)
+
+#BB2 Winter 18
+bb2winter18.env<-download.envdata(start.date=as.POSIXct("2018-01-29 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-02-17 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb2site)
+# save the dataset
+write.csv(bb2winter18.env,"wdata/bb2winter18_env.csv",row.names=F)
+
+#BB2 Spring 18
+bb2spring18.env<-download.envdata(start.date=as.POSIXct("2018-04-14 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-04-28 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb2site)
+# save the dataset
+write.csv(bb2spring18.env,"wdata/bb2spring18_env.csv",row.names=F)
+
+#BB2 Summer 18
+bb2summer18.env<-download.envdata(start.date=as.POSIXct("2018-07-22 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-08-04 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=bb2site)
+# save the dataset
+write.csv(bb2summer18.env,"wdata/bb2summer18_env.csv",row.names=F)
+
+#TB1 Fall 17
+tb1fall17.env<-download.envdata(start.date=as.POSIXct("2017-09-23 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                end.date=as.POSIXct("2017-10-11 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                site=tb1site)
+# save the dataset
+write.csv(tb1fall17.env,"wdata/tb1fall17_env.csv",row.names=F)
+
+#TB1 Winter 18
+tb1winter18.env<-download.envdata(start.date=as.POSIXct("2018-01-27 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-02-10 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=tb1site)
+# save the dataset
+write.csv(tb1winter18.env,"wdata/tb1winter18_env.csv",row.names=F)
+
+#TB1 Spring 18
+tb1spring18.env<-download.envdata(start.date=as.POSIXct("2018-04-09 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-04-23 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=tb1site)
+# save the dataset
+write.csv(tb1spring18.env,"wdata/tb1spring18_env.csv",row.names=F)
+
+#TB1 Summer 18
+tb1summer18.env<-download.envdata(start.date=as.POSIXct("2018-07-28 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
+                                  end.date=as.POSIXct("2018-08-11 23:59:59",tz="America/Chicago"),#change to match the end date/time of the deployment
+                                  site=tb1site)
+# save the dataset
+write.csv(tb1summer18.env,"wdata/tb1summer18_env.csv",row.names=F)
+
+
