@@ -8,6 +8,7 @@ lp("googledrive")
 fid<-"https://drive.google.com/drive/u/0/folders/1A32PGi8P4YOSe1Vz8WFNU-Xai27kOvKU"
 
 folder_id = drive_get(as_id(fid))
+2
 files =drive_ls(folder_id)
 files2<-bind_rows(files[grep(files$name,pattern="Mary"),],
                   files[grep(files$name,pattern="MC"),])
@@ -173,7 +174,28 @@ LUMO_dosal <- left_join(test_do2, test_sal2)
 # join temp
 test_temp2 <- distinct(temp2, time, .keep_all=TRUE)
 # drops from 747855 rows to 743123 rows (cuts ~4500 rows)
-LUMO_envdata <- left_join(LUMO_dosal, test_temp2)
+LUMO_envdata <- left_join(LUMO_dosal, test_temp2)%>%
+  mutate(date=ymd(paste(year(time),month(time),day(time))),
+         hr=hour(time))%>%
+  group_by(date,hr)%>%
+  summarize(do.mg.l=median(do.mg.l,na.rm=T),
+            sal.ppt=median(sal.ppt,na.rm=T),
+            temp.c=median(temp.c,na.rm=T))%>%
+  mutate(TS=ymd_h(paste(date,hr)))
+
+deps2<-deps
+year(deps2$start)<-c(2017,rep(2018,3))
+year(deps2$end)<-c(2017,rep(2018,3))
+
+LUMO_envdata$deploy<-NA
+LUMO_envdata$deploy[LUMO_envdata$TS %within% interval(deps2$start[1],deps2$end[1])]<-deps2$Folder[1]
+LUMO_envdata$deploy[LUMO_envdata$TS %within% interval(deps2$start[2],deps2$end[2])]<-deps2$Folder[2]
+LUMO_envdata$deploy[LUMO_envdata$TS %within% interval(deps2$start[3],deps2$end[3])]<-deps2$Folder[3]
+LUMO_envdata$deploy[LUMO_envdata$TS %within% interval(deps2$start[4],deps2$end[4])]<-deps2$Folder[4]
+
+
+LUMO_envdata<-LUMO_envdata|>
+  filter(!is.na(deploy))
 #492256 rows, same as test_do2
 head(LUMO_envdata) # all 3 variables are there!
 
