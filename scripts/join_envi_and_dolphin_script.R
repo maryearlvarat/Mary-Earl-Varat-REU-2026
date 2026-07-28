@@ -63,7 +63,7 @@ bb2fall24_env<-read.csv("wdata/bb2fall24_env.csv")
 bb2fall24_dolphins<-read.csv("wdata/bb2fall24_dolphins.csv")
 
 bb2fall24<-left_join(bb2fall24_dolphins,bb2fall24_env)%>%
-  mutate(site="bb2",
+  mutate(site="BB2",
          deployment="Fall")
 
 summary(colnames(bb2fall24)%in%cn)
@@ -76,7 +76,7 @@ winter25_env<-read.csv("wdata/bb2winter25_env.csv")
 winter25_dolphins<-read.csv("wdata/bb2winter25_dolphins.csv")
 
 winter25<-left_join(winter25_dolphins,winter25_env)%>%
-  mutate(site="bb2",
+  mutate(site="BB2",
          deployment="Winter")
 
 summary(colnames(winter25)%in%cn)
@@ -89,7 +89,7 @@ spring25_env<-read.csv("wdata/bb2spring25_env.csv")
 spring25_dolphins<-read.csv("wdata/bb2spring25_dolphins.csv")
 
 spring25<-left_join(spring25_dolphins,spring25_env)%>%
-  mutate(site="bb2",
+  mutate(site="BB2",
          deployment="Spring")
 
 summary(colnames(spring25)%in%cn)
@@ -101,7 +101,7 @@ summer25_env<-read.csv("wdata/bb2summer25_env.csv")
 summer25_dolphins<-read.csv("wdata/bb2summer25_dolphins.csv")
 
 summer25<-left_join(summer25_dolphins,summer25_env)%>%
-  mutate(site="bb2",
+  mutate(site="BB2",
          deployment="Summer",
          do.mg.l=NA)
 summer25<-bind_rows(spring25[0,],summer25)
