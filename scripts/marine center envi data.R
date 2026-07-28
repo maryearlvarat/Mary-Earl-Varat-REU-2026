@@ -96,4 +96,130 @@ lumo6_envi<-left_join(mcdo3%>%select(-TS),mcsat2%>%select(-UTC))
 
 write.csv(lumo6_envi,"wdata/lumo6_env.csv",row.names = F)
 
+# OLD DATA----
+# Marine Center Station----
+# read in data files
+# each variable is its own file
+do<-read_xlsx(path="odata/MC_DO_2008-2024.xlsx", sheet=1, skip=1)
+sal<-read_xlsx(path="odata/MC-Salinity 2000-2024.xlsx", sheet=1, skip=1)
+tempC<-read_xlsx(path="odata/MC-WaterTemp_2000-2024.xlsx", sheet=1)
+
+# DO
+# look at structure of DO data
+head(do)
+summary(do)
+# Okay, now take out the problem columns
+# rename columns so they align with USGS data
+do2<-do|>
+  #mutate(
+  #...1 = NULL,
+  #...2 = NULL,
+  #'%' = NULL)|>
+  select(UTC, 'mg L')|>
+  rename(
+    time = UTC,
+    do.mg.l = 'mg L')
+#check structure
+head(do2)
+summary(do2)
+
+# try salinity
+head(sal)
+summary(sal)
+
+# rename ppt to sal.ppt
+sal2=sal |>
+  rename(
+    time = UTC,
+    sal.ppt = ppt)
+head(sal2)
+
+# now temp
+head(tempC)
+summary(tempC)
+
+# need to clean columns
+temp2<-tempC |>
+  #mutate(
+  #...1 = NULL,
+  #...2 = NULL,
+  #'Water Temp °F' = NULL)|>
+  select('Date/Time', Temp)|>
+  rename(
+    time = 'Date/Time',
+    temp.c = Temp)
+# check
+head(temp2)
+summary(temp2)
+
+# can join all three together
+# will only join 2008 on, since that's when DO data starts...
+# temp and salinity start in 2000
+# (do a left join)
+
+LUMO_dosal <- left_join(do2, sal2)
+# Joining with `by = join_by(time)`
+# why are there 16 million rows?!
+# In left_join(do2, sal2) :
+#Detected an unexpected many-to-many relationship between `x` and `y`.
+#ℹ Row 24743 of `x` matches multiple rows in `y`.
+#ℹ Row 271177 of `y` matches multiple rows in `x`.
+#ℹ If a many-to-many relationship is expected, set `relationship = "many-to-many"` to silence this warning.
+head(LUMO_dosal)
+rm(LUMO_dosal)
+
+LUMO_saltemp <- left_join(sal2, temp2)
+# Joining with `by = join_by(time)`
+# why are there 14 million rows?!
+# In left_join(sal2, temp2) :
+#  Detected an unexpected many-to-many relationship between `x` and `y`.
+#ℹ Row 72 of `x` matches multiple rows in `y`.
+#ℹ Row 435 of `y` matches multiple rows in `x`.
+#ℹ If a many-to-many relationship is expected, set `relationship = "many-to-many"` to silence this warning.
+head(LUMO_saltemp)
+rm(LUMO_saltemp)
+
+# something is off with the times...?! how to figure that out?
+# are there duplicate times?
+test_do2 <- distinct(do2, time, .keep_all=TRUE) # cuts 4500 rows
+# try join again?
+LUMO_dosal <- left_join(test_do2, sal2)
+# no errors, but somehow there are more rows in the output (496806)
+# than in do2 (496798) or test_do2 (492256) ...???
+test_sal2 <- distinct(sal2, time, .keep_all=TRUE) # cuts 6000+ rows
+# sal2 has 747110, test_sal2 has 741867
+LUMO_dosal <- left_join(test_do2, test_sal2)
+# NOW its got 492256 rows, same as test_do2!
+# ...why are there so many duplicate rows? does it matter which dupe you keep?
+# join temp
+test_temp2 <- distinct(temp2, time, .keep_all=TRUE)
+# drops from 747855 rows to 743123 rows (cuts ~4500 rows)
+LUMO_envdata <- left_join(LUMO_dosal, test_temp2)
+#492256 rows, same as test_do2
+head(LUMO_envdata) # all 3 variables are there!
+
+# write the data
+write.csv(LUMO_envdata,"wdata/lumo6_old_env.csv",row.names = F)
+
+# Terrebonne Bay Station----
+# just need DO
+# DO is one sheet in the workbook; each variable has its own sheet in a single workbook
+tbdo<-read_xlsx(path="odata/Terrebonne Bay_ 2008-2020.xlsx", sheet=2)
+head(tbdo)
+
+# clean up! pull out relevant columns; rename time and DO variables
+tbdo2<-tbdo |>
+  select(UTC, 'DO mg/L')|>
+  rename(
+    time = UTC,
+    do.mg.l = 'DO mg/L')
+# check
+head(tbdo2)
+summary(tbdo2)
+
+# join DO with existing env data from other script..
+
+
+# write the data
+write.csv(lumo6_envi,"wdata/lumo6_env.csv",row.names = F)
 
