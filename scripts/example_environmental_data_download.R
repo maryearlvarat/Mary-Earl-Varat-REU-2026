@@ -3,8 +3,8 @@
 # run this the first time you install the package - after that you can skip lines 4-7
 library(remotes)
 
-install_github("DOI-USGS/dataRetrieval",
-               ref = "develop") # this is the development version, which may be buggy (could use "main" instead)
+# install_github("DOI-USGS/dataRetrieval",
+#                ref = "develop") # this is the development version, which may be buggy (could use "main" instead)
 
 # load packages----
 library("dataRetrieval")

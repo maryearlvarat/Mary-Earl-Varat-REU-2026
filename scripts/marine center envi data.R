@@ -94,7 +94,7 @@ mcdo3<-filter(mcdo2,!is.na(deploy))
 #join DO with SALTEMp
 
 
-lumo6_envi<-left_join(mcdo3%>%select(-TS),mcsat2%>%select(-UTC))
+lumo6_envi<-full_join(mcdo3%>%select(-TS),mcsat2%>%select(-UTC))
 
 write.csv(lumo6_envi,"wdata/lumo6_env.csv",row.names = F)
 

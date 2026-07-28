@@ -43,7 +43,7 @@ spring25<-left_join(spring25_dolphins,spring25_env)%>%
          deployment="Spring")
 
 summary(colnames(spring25)%in%cn)
-
+spring25<-bind_rows(winter25[0,],spring25)
 write.csv(spring25,"wdata/combined_BB1spring25.csv",row.names = F)
 
 
@@ -104,6 +104,7 @@ summer25<-left_join(summer25_dolphins,summer25_env)%>%
   mutate(site="bb2",
          deployment="Summer",
          do.mg.l=NA)
+summer25<-bind_rows(spring25[0,],summer25)
 
 summary(colnames(summer25)%in% cn)
 
@@ -119,6 +120,8 @@ lumo6summer25_combined<-left_join(lumo6summer25_dolphins,lumo6_env)%>%
          deployment="Summer")%>%
   select(-deploy)
 summary(colnames(lumo6summer25_combined)%in% cn)
+
+lumo6summer25_combined<-bind_rows(summer25[0,],lumo6summer25_combined)
 write.csv(lumo6summer25_combined,"wdata/lumo6summer25_combined.csv",row.names = F)
 
 lumo6_env<-read.csv("wdata/lumo6_env.csv")
@@ -128,5 +131,5 @@ lumo6winter25_combined<-left_join(lumo6winter25_dolphins,lumo6_env)%>%
          deployment="Winter")%>%
   select(-deploy)
 summary(colnames(lumo6winter25_combined)%in% cn)
-
+lumo6winter25_combined<-bind_rows(summer25[0,],lumo6winter25_combined)
 write.csv(lumo6winter25_combined,"wdata/lumo6winter25_combined.csv",row.names = F)
