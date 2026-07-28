@@ -2,7 +2,7 @@
 #script to join dolphin and envi data, also to take out envi data that does not match with dolphin data 
 
 #update to ensure all have the same column names
-cn<-c("mnth","dy","hr","n.dolphins","binary.dolphins","yr","do.mg.l","sal.ppt","temp.c","site","deployment")
+cn<-c("mnth","dy","hr","n.dolphins","binary.dolphins","detection.minutes","yr","do.mg.l","sal.ppt","temp.c","site","deployment")
 #load data----
 bb1fall24_env<-read.csv("wdata/bb1fall24_env.csv")
 bb1fall24_dolphins<-read.csv("wdata/bb1fall24_dolphins.csv")
@@ -102,9 +102,10 @@ summer25_dolphins<-read.csv("wdata/bb2summer25_dolphins.csv")
 
 summer25<-left_join(summer25_dolphins,summer25_env)%>%
   mutate(site="bb2",
-         deployment="Summer")
+         deployment="Summer",
+         do.mg.l=NA)
 
-summary(cn %in% colnames(summer25))
+summary(colnames(summer25)%in% cn)
 
 write.csv(summer25,"wdata/bb2summer25_combined.csv",row.names = F)
 
@@ -117,7 +118,7 @@ lumo6summer25_combined<-left_join(lumo6summer25_dolphins,lumo6_env)%>%
   mutate(site="LUMO6",
          deployment="Summer")%>%
   select(-deploy)
-
+summary(colnames(lumo6summer25_combined)%in% cn)
 write.csv(lumo6summer25_combined,"wdata/lumo6summer25_combined.csv",row.names = F)
 
 lumo6_env<-read.csv("wdata/lumo6_env.csv")
@@ -126,6 +127,6 @@ lumo6winter25_combined<-left_join(lumo6winter25_dolphins,lumo6_env)%>%
   mutate(site="LUMO6",
          deployment="Winter")%>%
   select(-deploy)
-
+summary(colnames(lumo6winter25_combined)%in% cn)
 
 write.csv(lumo6winter25_combined,"wdata/lumo6winter25_combined.csv",row.names = F)
