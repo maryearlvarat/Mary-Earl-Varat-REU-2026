@@ -9,11 +9,12 @@ fid<-"https://drive.google.com/drive/u/0/folders/1A32PGi8P4YOSe1Vz8WFNU-Xai27kOv
 
 folder_id = drive_get(as_id(fid))
 files =drive_ls(folder_id)
-files<-files[grep(files$name,pattern="Mary"),]
+files2<-bind_rows(files[grep(files$name,pattern="Mary"),],
+                  files[grep(files$name,pattern="MC"),])
 
-for(i in 1:nrow(files)){
-  drive_download(file = files$id[i],
-                 path = paste0("odata/",files$name[i]),
+for(i in 1:nrow(files2)){
+  drive_download(file = files2$id[i],
+                 path = paste0("odata/",files2$name[i]),
                  overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on
 }
 
