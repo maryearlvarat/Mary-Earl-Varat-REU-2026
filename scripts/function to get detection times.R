@@ -35,7 +35,7 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
     mutate(start.time=ifelse(is.na(`Begin Time (s)`),`Begin Time (s)1`,`Begin Time (s)`),
            start.time = fls.starttime + start.time,
            end.time=start.time+`Delta Time (s)`)%>%
-    select(deployment,start.time,end.time)%>%
+    select(deployment,start.time,end.time,delt.time=`Delta Time (s)`)%>%
     mutate(start.mnth=month(start.time),
            start.dy=day(start.time),
            start.hr=hour(start.time),
@@ -43,7 +43,8 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
            end.dy=day(end.time),
            end.hr=hour(end.time))%>%# have to decide what to do if start and end times cross the hour or day line
     group_by(start.mnth,start.dy,start.hr)%>%
-    summarize(n.dolphins=n())
+    summarize(n.dolphins=n(),
+              detection.minutes=sum(delt.time)/60)
   # code to create a dataset of all days and hours in a deployment
   dep.dt<-data.frame(date.time=seq(strt.dt,end.dt,by="hour"))%>%
     mutate(start.mnth=month(date.time),
@@ -52,7 +53,8 @@ getseltimes<-function(deploy=NA,strt.dt=NA,end.dt=NA){
     select(-date.time)%>%
     left_join(seltables)%>%
     mutate(n.dolphins=ifelse(is.na(n.dolphins),0,n.dolphins),
-           binary.dolphins=ifelse(n.dolphins==0,0,1))%>%
+           binary.dolphins=ifelse(n.dolphins==0,0,1),
+           detection.minutes=ifelse(is.na(detection.minutes),0,detection.minutes))%>%
     rename(mnth=start.mnth,dy=start.dy,hr=start.hr)
   return(dep.dt)
 }
