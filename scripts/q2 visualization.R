@@ -30,7 +30,9 @@ env<-env|>
     mnth %in% c(3,4,5)~"Spring",
     mnth %in% c(6,7,8)~"Summer",
     mnth %in% c(9,10,11)~"Fall"),
-    yr2=ifelse(yr %in% c(2017,2018),2018,2025))
+    yr2=ifelse(yr %in% c(2017,2018),2018,2025),
+    location=ifelse(site %in% c("bb1","tb1"),"outer","inner"),
+    bay=ifelse(site %in% c("bb1","bb2"),"Barataria","Terrebonne"))
 
 # visualize data at sites across time
 ggplot(data=env)+
@@ -39,14 +41,30 @@ ggplot(data=env)+
   ggtitle("Salinity")
 
 ggplot(data=env)+
+  geom_boxplot(aes(y=sal.ppt,fill=as.factor(yr2),x=location))+
+  facet_grid(bay~season)+
+  ggtitle("Salinity")
+
+ggplot(data=env)+
   geom_boxplot(aes(y=temp.c,fill=as.factor(yr2)))+
   facet_grid(site~season)+
   ggtitle("Temp")
 
 ggplot(data=env)+
+  geom_boxplot(aes(y=temp.c,fill=as.factor(yr2),x=location))+
+  facet_grid(bay~season)+
+  ggtitle("temp")
+
+
+ggplot(data=env)+
   geom_boxplot(aes(y=do.mg.l,fill=as.factor(yr2)))+
   facet_grid(site~season)+
   ggtitle("do.mg.l")
+
+ggplot(data=env)+
+  geom_boxplot(aes(y=do.mg.l,fill=as.factor(yr2),x=location))+
+  facet_grid(bay~season)+
+  ggtitle("do")
 
 env2<-env%>%
   filter(!is.na(sal.ppt))|>
@@ -62,7 +80,14 @@ env2<-bind_cols(env2,env.scores)
 ggplot(env2)+
   geom_point(aes(x=PC1,y=PC2,color=site))
 
-ggplot(env2)+
-  geom_point(aes(x=PC1,y=PC2,color=as.factor(yr2)))+
-  facet_grid(site~season)
+ggplot(env2%>%
+         mutate(grp1=paste(bay,yr2))%>%
+         filter(location!="outer"))+
+  geom_point(aes(x=PC1,y=PC2,color=grp1,shape=bay))+
+  facet_grid(~season)+
+  stat_ellipse(aes(x=PC1,y=PC2,group=grp1,color=grp1))+
+  scale_color_viridis_d()
+
 summary(env.rda)
+
+
