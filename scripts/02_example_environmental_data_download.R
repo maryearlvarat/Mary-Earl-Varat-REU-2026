@@ -14,6 +14,7 @@ library("tidyverse")
 bb2site<-"USGS-073802512"
 bb1site<-"USGS-07380249"
 tb1site<-"USGS-073813498"
+bb1site2<-"USGS-073802516"
 params=c("00480","00010","00300")# this is salinity (PPT), temperature (degrees C), and dissolved oxygen (mg/L)
 
 # download data
@@ -137,7 +138,7 @@ write.csv(tb1summer25.env,"wdata/tb1summer25_env.csv",row.names=F)
 #bb1 fall 24 isnt working
 bb1fall17.env<-download.envdata(start.date=as.POSIXct("2017-09-25 00:00:00",tz="America/Chicago"),# change to match the start date/time of the deployment
                                 end.date=as.POSIXct("2017-10-09 23:59:59",tz="America/Chicago"),
-                                site=bb1site)#change to match the end date/time of the deployment
+                                site=bb1site2)#change to match the end date/time of the deployment
 # save the dataset
 write.csv(bb1fall17.env,"wdata/bb1fall17_env.csv",row.names=F) 
 
