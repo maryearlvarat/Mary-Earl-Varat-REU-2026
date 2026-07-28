@@ -157,28 +157,6 @@ summary(temp2)
 # temp and salinity start in 2000
 # (do a left join)
 
-LUMO_dosal <- left_join(do2, sal2)
-# Joining with `by = join_by(time)`
-# why are there 16 million rows?!
-# In left_join(do2, sal2) :
-#Detected an unexpected many-to-many relationship between `x` and `y`.
-#ℹ Row 24743 of `x` matches multiple rows in `y`.
-#ℹ Row 271177 of `y` matches multiple rows in `x`.
-#ℹ If a many-to-many relationship is expected, set `relationship = "many-to-many"` to silence this warning.
-head(LUMO_dosal)
-rm(LUMO_dosal)
-
-LUMO_saltemp <- left_join(sal2, temp2)
-# Joining with `by = join_by(time)`
-# why are there 14 million rows?!
-# In left_join(sal2, temp2) :
-#  Detected an unexpected many-to-many relationship between `x` and `y`.
-#ℹ Row 72 of `x` matches multiple rows in `y`.
-#ℹ Row 435 of `y` matches multiple rows in `x`.
-#ℹ If a many-to-many relationship is expected, set `relationship = "many-to-many"` to silence this warning.
-head(LUMO_saltemp)
-rm(LUMO_saltemp)
-
 # something is off with the times...?! how to figure that out?
 # are there duplicate times?
 test_do2 <- distinct(do2, time, .keep_all=TRUE) # cuts 4500 rows
