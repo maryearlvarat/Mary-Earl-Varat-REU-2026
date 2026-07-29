@@ -11,7 +11,7 @@ folder_id = drive_get(as_id(fid))
 2
 files =drive_ls(folder_id)
 files2<-bind_rows(files[grep(files$name,pattern="Mary"),],
-                  files[grep(files$name,pattern="MC"),])
+                  files[grep(files$name,pattern="MC"),]) # add Terrebonne Bay here
 
 for(i in 1:nrow(files2)){
   drive_download(file = files2$id[i],
@@ -196,8 +196,7 @@ LUMO_envdata$deploy[LUMO_envdata$TS %within% interval(deps2$start[4],deps2$end[4
 
 LUMO_envdata<-LUMO_envdata|>
   filter(!is.na(deploy))
-#492256 rows, same as test_do2
-head(LUMO_envdata) # all 3 variables are there!
+head(LUMO_envdata) 
 
 # write the data
 write.csv(LUMO_envdata,"wdata/LUMO6_old_env.csv",row.names = F)
@@ -205,7 +204,7 @@ write.csv(LUMO_envdata,"wdata/LUMO6_old_env.csv",row.names = F)
 # Terrebonne Bay Station----
 # just need DO
 # DO is one sheet in the workbook; each variable has its own sheet in a single workbook
-tbdo<-read_xlsx(path="odata/Terrebonne Bay_ 2008-2020.xlsx", sheet=2)
+tbdo<-read_xlsx(path="odata/TerrebonneBay_2008-2020.xlsx", sheet=2)
 head(tbdo)
 
 # clean up! pull out relevant columns; rename time and DO variables
@@ -222,5 +221,5 @@ summary(tbdo2)
 
 
 # write the data
-write.csv(LUMO6_envi,"wdata/LUMO6_env.csv",row.names = F)
+write.csv(TB1_all_env,"wdata/TB1_all_env.csv",row.names = F)
 
