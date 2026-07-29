@@ -129,4 +129,40 @@ for(i in 1:nrow(files)){
                    path = paste0("odata/",dep,"/",files$name[i]),
                    overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
   } 
+  #LUMO6 Fall 24
+  fid<-"https://drive.google.com/drive/folders/1l2_QaOxXhYsPB1pDyAtIaw_YxjmsttsM"
+  folder_id = drive_get(as_id(fid))
+  files =drive_ls(folder_id)
+  
+  dep<-"LUMO6_Fall24"
+  dir.create(paste0( "odata/",dep))
+  for(i in 1:nrow(files)){
+    drive_download(file = files$id[i],
+                   path = paste0("odata/",dep,"/",files$name[i]),
+                   overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
+  } 
+  #TB1 Summer 25
+  fid<-"https://drive.google.com/drive/folders/1zhl9hkiA9x7zg7AA2pN4S99GZfvFB2X7"
+  folder_id = drive_get(as_id(fid))
+  files =drive_ls(folder_id)
+  
+  dep<-"TB1 Summer 25"
+  dir.create(paste0( "odata/",dep))
+  for(i in 1:nrow(files)){
+    drive_download(file = files$id[i],
+                   path = paste0("odata/",dep,"/",files$name[i]),
+                   overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
+  } 
+  #TB1 Winter 25
+  fid<-"https://drive.google.com/drive/folders/1jF_yQMt15o8mU1kHhImsz56ks9BR9gHD"
+  folder_id = drive_get(as_id(fid))
+  files =drive_ls(folder_id)
+  
+  dep<-"TB1 Winter 25"
+  dir.create(paste0( "odata/",dep))
+  for(i in 1:nrow(files)){
+    drive_download(file = files$id[i],
+                   path = paste0("odata/",dep,"/",files$name[i]),
+                   overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on 
+  }
   
