@@ -13,7 +13,21 @@ lp("ggeffects")
 fls<-list.files("wdata",pattern="combined")
 fls<-paste0("wdata/",fls)
 
-dts<-read_csv(fls)
+dts<-read.csv(fls[1])
+for(i in 2:length(fls))dts<-bind_rows(dts,read.csv(fls[i]))
+
+table(dts$site,dts$deployment)
+dts<-dts%>%
+  mutate(season=case_when(
+    mnth %in% c(12,1,2)~"Winter",
+    mnth %in% c(3,4,5)~"Spring",
+    mnth %in% c(6,7,8)~"Summer",
+    mnth %in% c(9,10,11)~"Fall"),
+    location=ifelse(site %in% c("BB1","TB1"),"outer","inner"),
+    bay=ifelse(site %in% c("BB1","BB2"),"Barataria","Terrebonne"))
+
+dts$season<-factor(dts$season,levels=c("Fall","Winter","Spring","Summer"))
+
 
 #look to see if there is time structure
 ggplot(data=dts%>%mutate(dt=ymd_h(paste(yr,mnth,dy,hr))))+
