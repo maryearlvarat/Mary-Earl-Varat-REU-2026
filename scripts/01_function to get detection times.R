@@ -128,6 +128,11 @@ LUMO6fall24.seltables<-getseltimes(deploy="LUMO6_fall24",
                                      strt.dt<-ymd_hms("2024-09-23 18:00:00",tz="America/Chicago"),
                                      end.dt<-ymd_hms("2024-10-07 08:00:00",tz="America/Chicago"))
 write.csv(LUMO6fall24.seltables,"wdata/LUMO6fall24_dolphins.csv",row.names = F)
+#LUMO6 Spring 25
+LUMO6spring25.seltables<-getseltimes(deploy="LUMO6_spring25",
+                                   strt.dt<-ymd_hms("2024-04-01 18:00:00",tz="America/Chicago"),
+                                   end.dt<-ymd_hms("2024-04-16 08:00:00",tz="America/Chicago"))
+write.csv(LUMO6spring25.seltables,"wdata/LUMO6spring25_dolphins.csv",row.names = F)
 
 #TB1
 #TB1 Summer 25

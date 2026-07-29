@@ -148,6 +148,16 @@ LUMO6fall24<-left_join(LUMO6fall24_dolphins,LUMO6_env)%>%
 summary(colnames(LUMO6fall24)%in% cn)
 LUMO6fall24_combined<-bind_rows(LUMO6fall24[0,],LUMO6winter25)
 write.csv(LUMO6fall24_combined,"wdata/LUMO6fall24_combined.csv",row.names = F)
+#LUMOSpring
+LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
+LUMO6spring25_dolphins<-read.csv("wdata/LUMO6spring25_dolphins.csv")
+LUMO6spring25<-left_join(LUMO6spring25_dolphins,LUMO6_env)%>%
+  mutate(site="LUMO6",
+         deployment="spring")%>%
+  select(-deploy)
+summary(colnames(LUMO6spring25)%in% cn)
+LUMO6spring25_combined<-bind_rows(LUMO6spring25[0,],LUMO6winter25)
+write.csv(LUMO6spring25_combined,"wdata/LUMO6spring25_combined.csv",row.names = F)
 
 #TB1
 #TB1 Winter
