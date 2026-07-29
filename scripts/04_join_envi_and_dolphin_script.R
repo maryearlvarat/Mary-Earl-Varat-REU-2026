@@ -132,6 +132,7 @@ write.csv(LUMO6summer25_combined,"wdata/LUMO6summer25_combined.csv",row.names = 
 LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
 LUMO6winter25_dolphins<-read.csv("wdata/LUMO6winter25_dolphins.csv")
 LUMO6winter25<-full_join(LUMO6winter25_dolphins,LUMO6_env)%>%
+  filter(deploy=="Winter25")%>%
   mutate(site="LUMO6",
          deployment="Winter")%>%
   select(-deploy)
@@ -143,6 +144,7 @@ write.csv(LUMO6winter25_combined,"wdata/LUMO6winter25_combined.csv",row.names = 
 LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
 LUMO6fall24_dolphins<-read.csv("wdata/LUMO6fall24_dolphins.csv")
 LUMO6fall24<-full_join(LUMO6fall24_dolphins,LUMO6_env)%>%
+  filter(deploy=="Fall24")%>%
   mutate(site="LUMO6",
          deployment="Fall")%>%
   select(-deploy)
@@ -154,6 +156,7 @@ write.csv(LUMO6fall24_combined,"wdata/LUMO6fall24_combined.csv",row.names = F)
 LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
 LUMO6spring25_dolphins<-read.csv("wdata/LUMO6spring25_dolphins.csv")
 LUMO6spring25<-full_join(LUMO6spring25_dolphins,LUMO6_env)%>%
+  filter(deploy=="Spring25")%>%
   mutate(site="LUMO6",
          deployment="Spring")%>%
   select(-deploy)
