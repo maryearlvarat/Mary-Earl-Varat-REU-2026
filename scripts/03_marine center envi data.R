@@ -63,7 +63,7 @@ table(mcsat$deploy)
 mcsat2<-filter(mcsat,!is.na(deploy))
 
 
-#DO MC Data - dont run any of this 
+#DO MC Data
 #Read in Marine Sal and Temp data
 mcdo<-read_xlsx(path="odata/Mary_MC_DO.xlsx",skip=1)
 summary(mcdo)
@@ -94,9 +94,9 @@ mcdo3<-filter(mcdo2,!is.na(deploy))
 #join DO with SALTEMp
 
 
-lumo6_envi<-full_join(mcdo3%>%select(-TS),mcsat2%>%select(-UTC))
+LUMO6_envi<-full_join(mcdo3%>%select(-TS),mcsat2%>%select(-UTC))
 
-write.csv(lumo6_envi,"wdata/lumo6_env.csv",row.names = F)
+write.csv(LUMO6_envi,"wdata/LUMO6_env.csv",row.names = F)
 
 # OLD DATA----
 # Marine Center Station----
@@ -200,7 +200,7 @@ LUMO_envdata<-LUMO_envdata|>
 head(LUMO_envdata) # all 3 variables are there!
 
 # write the data
-write.csv(LUMO_envdata,"wdata/lumo6_old_env.csv",row.names = F)
+write.csv(LUMO_envdata,"wdata/LUMO6_old_env.csv",row.names = F)
 
 # Terrebonne Bay Station----
 # just need DO
@@ -222,5 +222,5 @@ summary(tbdo2)
 
 
 # write the data
-write.csv(lumo6_envi,"wdata/lumo6_env.csv",row.names = F)
+write.csv(LUMO6_envi,"wdata/LUMO6_env.csv",row.names = F)
 
