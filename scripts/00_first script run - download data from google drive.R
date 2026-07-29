@@ -146,7 +146,7 @@ for(i in 1:nrow(files)){
   folder_id = drive_get(as_id(fid))
   files =drive_ls(folder_id)
   
-  dep<-"TB1_Summer 25"
+  dep<-"TB1_Summer25"
   dir.create(paste0( "odata/",dep))
   for(i in 1:nrow(files)){
     drive_download(file = files$id[i],
@@ -158,7 +158,7 @@ for(i in 1:nrow(files)){
   folder_id = drive_get(as_id(fid))
   files =drive_ls(folder_id)
   
-  dep<-"TB1_Winter 25"
+  dep<-"TB1_Winter25"
   dir.create(paste0( "odata/",dep))
   for(i in 1:nrow(files)){
     drive_download(file = files$id[i],
