@@ -4,132 +4,170 @@
 #update to ensure all have the same column names
 cn<-c("mnth","dy","hr","n.dolphins","binary.dolphins","detection.minutes","yr","do.mg.l","sal.ppt","temp.c","site","deployment")
 #load data----
-bb1fall24_env<-read.csv("wdata/bb1fall24_env.csv")
-bb1fall24_dolphins<-read.csv("wdata/bb1fall24_dolphins.csv")
 
-bb1fall24<-left_join(bb1fall24_dolphins,bb1fall24_env)%>%
+#BB1
+
+BB1fall24_env<-read.csv("wdata/BB1fall24_env.csv")
+BB1fall24_dolphins<-read.csv("wdata/BB1fall24_dolphins.csv")
+
+BB1fall24<-left_join(BB1fall24_dolphins,BB1fall24_env)%>%
   mutate(site="BB1",
          deployment="Fall")
 
 # add a check if it has all the same columns
-summary(colnames(bb1fall24)%in%cn)
+summary(colnames(BB1fall24)%in%cn)
 
 # if all true then move on
 
-write.csv(bb1fall24,"wdata/bb1fall24_combined.csv",row.names = F)
+write.csv(BB1fall24,"wdata/BB1fall24_combined.csv",row.names = F)
 
 
 
 
-winter25_env<-read.csv("wdata/bb1winter25_env.csv")
-winter25_dolphins<-read.csv("wdata/BB1winter25_dolphins.csv")
+BB1winter25_env<-read.csv("wdata/BB1winter25_env.csv")
+BB1winter25_dolphins<-read.csv("wdata/BB1winter25_dolphins.csv")
 
-winter25<-left_join(winter25_dolphins,winter25_env)%>%
+BB1winter25<-left_join(BB1winter25_dolphins,BB1winter25_env)%>%
   mutate(site="BB1",
          deployment="Winter")
 
-summary(colnames(winter25)%in%cn)
+summary(colnames(BB1winter25)%in%cn)
 
-write.csv(winter25,"wdata/combined_BB1winter25.csv",row.names = F)
-
-
+write.csv(BB1winter25,"wdata/BB1winter25_combined.csv",row.names = F)
 
 
-spring25_env<-read.csv("wdata/bb1spring25_env.csv")
-spring25_dolphins<-read.csv("wdata/BB1spring25_dolphins.csv")
 
-spring25<-left_join(spring25_dolphins,spring25_env)%>%
+
+BB1spring25_env<-read.csv("wdata/BB1spring25_env.csv")
+BB1spring25_dolphins<-read.csv("wdata/BB1spring25_dolphins.csv")
+
+BB1spring25<-left_join(BB1spring25_dolphins,BB1spring25_env)%>%
   mutate(site="BB1",
          deployment="Spring")
 
-summary(colnames(spring25)%in%cn)
-spring25<-bind_rows(winter25[0,],spring25)
-write.csv(spring25,"wdata/combined_BB1spring25.csv",row.names = F)
+summary(colnames(BB1spring25)%in%cn)
+BB1spring25<-bind_rows(winter25[0,],spring25)
+write.csv(BB1spring25,"wdata/BB1spring25_combined.csv",row.names = F)
+#BB1 Summer 25
 
+BB1summer25_env<-read.csv("wdata/BB1summer25_env.csv")
+BB1summer25_dolphins<-read.csv("wdata/BB1summer25_dolphins.csv")
 
-summer25_env<-read.csv("wdata/bb1summer25_env.csv")
-summer25_dolphins<-read.csv("wdata/BB1summer25_dolphins.csv")
-
-summer25<-left_join(summer25_dolphins,summer25_env)%>%
+BB1summer25<-left_join(BB1summer25_dolphins,BB1summer25_env)%>%
   mutate(site="BB1",
          deployment="Summer")
 
-summary(colnames(summer25)%in%cn)
-write.csv(summer25,"wdata/combined_BB1summer25.csv",row.names = F)
+summary(colnames(BB1summer25)%in%cn)
+write.csv(BB1summer25,"wdata/BB1summer25_combined.csv",row.names = F)
 
 #BB2 
 
-bb2fall24_env<-read.csv("wdata/bb2fall24_env.csv")
-bb2fall24_dolphins<-read.csv("wdata/bb2fall24_dolphins.csv")
+BB2fall24_env<-read.csv("wdata/BB2fall24_env.csv")
+BB2fall24_dolphins<-read.csv("wdata/BB2fall24_dolphins.csv")
 
-bb2fall24<-left_join(bb2fall24_dolphins,bb2fall24_env)%>%
+BB2fall24<-left_join(BB2fall24_dolphins,BB2fall24_env)%>%
   mutate(site="BB2",
          deployment="Fall")
 
-summary(colnames(bb2fall24)%in%cn)
-write.csv(bb2fall24,"wdata/bb2fall24_combined.csv",row.names = F)
+summary(colnames(BB2fall24)%in%cn)
+write.csv(BB2fall24,"wdata/BB2fall24_combined.csv",row.names = F)
 
 
+#BB2 Winter
 
+BB2winter25_env<-read.csv("wdata/BB2winter25_env.csv")
+BB2winter25_dolphins<-read.csv("wdata/BB2winter25_dolphins.csv")
 
-winter25_env<-read.csv("wdata/bb2winter25_env.csv")
-winter25_dolphins<-read.csv("wdata/bb2winter25_dolphins.csv")
-
-winter25<-left_join(winter25_dolphins,winter25_env)%>%
+BB2winter25<-left_join(BB2winter25_dolphins,BB2winter25_env)%>%
   mutate(site="BB2",
          deployment="Winter")
 
-summary(colnames(winter25)%in%cn)
-write.csv(winter25,"wdata/bb2winter25_combined.csv",row.names = F)
+summary(colnames(BB2winter25)%in%cn)
+write.csv(BB2winter25,"wdata/BB2winter25_combined.csv",row.names = F)
 
 
+#BB2 Spring 25
 
+BB2spring25_env<-read.csv("wdata/BB2spring25_env.csv")
+BB2spring25_dolphins<-read.csv("wdata/BB2spring25_dolphins.csv")
 
-spring25_env<-read.csv("wdata/bb2spring25_env.csv")
-spring25_dolphins<-read.csv("wdata/bb2spring25_dolphins.csv")
-
-spring25<-left_join(spring25_dolphins,spring25_env)%>%
+BB2spring25<-left_join(BB2spring25_dolphins,BB2spring25_env)%>%
   mutate(site="BB2",
          deployment="Spring")
 
-summary(colnames(spring25)%in%cn)
+summary(colnames(BB2spring25)%in%cn)
 
-write.csv(spring25,"wdata/bb2spring25_combined.csv",row.names = F)
+write.csv(BB2spring25,"wdata/BB2spring25_combined.csv",row.names = F)
 
+#BB2 Summer 
+BB2summer25_env<-read.csv("wdata/BB2summer25_env.csv")
+BB2summer25_dolphins<-read.csv("wdata/BB2summer25_dolphins.csv")
 
-summer25_env<-read.csv("wdata/bb2summer25_env.csv")
-summer25_dolphins<-read.csv("wdata/bb2summer25_dolphins.csv")
-
-summer25<-left_join(summer25_dolphins,summer25_env)%>%
+BB2summer25<-left_join(BB2summer25_dolphins,BB2summer25_env)%>%
   mutate(site="BB2",
          deployment="Summer",
          do.mg.l=NA)
-summer25<-bind_rows(spring25[0,],summer25)
+BB2summer25<-bind_rows(BB2spring25[0,],BB2summer25)
 
-summary(colnames(summer25)%in% cn)
+summary(colnames(BB2summer25)%in% cn)
 
-write.csv(summer25,"wdata/bb2summer25_combined.csv",row.names = F)
+write.csv(BB2summer25,"wdata/BB2summer25_combined.csv",row.names = F)
 
 
 #LUMO6
 
-lumo6_env<-read.csv("wdata/lumo6_env.csv")
-lumo6summer25_dolphins<-read.csv("wdata/lumo6summer25_dolphins.csv")
-lumo6summer25_combined<-left_join(lumo6summer25_dolphins,lumo6_env)%>%
+LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
+LUMO6summer25_dolphins<-read.csv("wdata/LUMO6summer25_dolphins.csv")
+LUMO6summer25_combined<-left_join(LUMO6summer25_dolphins,LUMO6_env)%>%
   mutate(site="LUMO6",
          deployment="Summer")%>%
   select(-deploy)
-summary(colnames(lumo6summer25_combined)%in% cn)
+summary(colnames(LUMO6summer25_combined)%in% cn)
 
-lumo6summer25_combined<-bind_rows(summer25[0,],lumo6summer25_combined)
-write.csv(lumo6summer25_combined,"wdata/lumo6summer25_combined.csv",row.names = F)
+LUMO6summer25_combined<-bind_rows(summer25[0,],LUMO6summer25_combined)
+write.csv(LUMO6summer25_combined,"wdata/LUMO6summer25_combined.csv",row.names = F)
 
-lumo6_env<-read.csv("wdata/lumo6_env.csv")
-lumo6winter25_dolphins<-read.csv("wdata/lumo6winter25_dolphins.csv")
-lumo6winter25_combined<-left_join(lumo6winter25_dolphins,lumo6_env)%>%
+#LUMO WINTER
+LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
+LUMO6winter25_dolphins<-read.csv("wdata/LUMO6winter25_dolphins.csv")
+LUMO6winter25_combined<-left_join(LUMO6winter25_dolphins,LUMO6_env)%>%
   mutate(site="LUMO6",
          deployment="Winter")%>%
   select(-deploy)
-summary(colnames(lumo6winter25_combined)%in% cn)
-lumo6winter25_combined<-bind_rows(summer25[0,],lumo6winter25_combined)
-write.csv(lumo6winter25_combined,"wdata/lumo6winter25_combined.csv",row.names = F)
+summary(colnames(LUMO6winter25_combined)%in% cn)
+LUMO6winter25_combined<-bind_rows(summer25[0,],LUMO6winter25_combined)
+write.csv(LUMO6winter25_combined,"wdata/LUMO6winter25_combined.csv",row.names = F)
+
+#LUMOFALL
+LUMO6_env<-read.csv("wdata/LUMO6_env.csv")
+LUMO6fall24_dolphins<-read.csv("wdata/LUMO6fall24_dolphins.csv")
+LUMO6fall24_combined<-left_join(LUMO6fall24_dolphins,LUMO6_env)%>%
+  mutate(site="LUMO6",
+         deployment="fall")%>%
+  select(-deploy)
+summary(colnames(LUMO6fall24_combined)%in% cn)
+LUMO6fall24_combined<-bind_rows(summer24[0,],LUMO6fall24_combined)
+write.csv(LUMO6fall24_combined,"wdata/LUMO6fall24_combined.csv",row.names = F)
+
+#TB1
+#TB1 Winter
+TB1_env<-read.csv("wdata/TB1_env.csv")
+TB1winter25_dolphins<-read.csv("wdata/TB1winter25_dolphins.csv")
+TB1winter25_combined<-left_join(TB1winter25_dolphins,TB1_env)%>%
+  mutate(site="TB1",
+         deployment="fall")%>%
+  select(-deploy)
+summary(colnames(TB1winter25_combined)%in% cn)
+TB1winter25_combined<-bind_rows(summer24[0,],TB1winter25_combined)
+write.csv(TB1winter25_combined,"wdata/TB1winter25_combined.csv",row.names = F)
+
+#TB1 Summer
+TB1_env<-read.csv("wdata/TB1_env.csv")
+TB1summer25_dolphins<-read.csv("wdata/TB1summer25_dolphins.csv")
+TB1summer25_combined<-left_join(TB1summer25_dolphins,TB1_env)%>%
+  mutate(site="TB1",
+         deployment="fall")%>%
+  select(-deploy)
+summary(colnames(TB1summer25_combined)%in% cn)
+TB1summer25_combined<-bind_rows(summer24[0,],TB1summer25_combined)
+write.csv(TB1summer25_combined,"wdata/TB1summer25_combined.csv",row.names = F)
