@@ -10,6 +10,7 @@ lp("tidyverse")
 #BB1 Fall24----
 fid<-"https://drive.google.com/drive/folders/17jMX-KMDLhsykFaiaY5jqNiq9mAxknDI"
 folder_id = drive_get(as_id(fid))
+2
 files =drive_ls(folder_id)
 
 dep<-"BB1_Fall2024"
@@ -45,7 +46,7 @@ for(i in 1:nrow(files)){
                  overwrite = TRUE) #drive download, file downloaded is whatever number of the loop we are on
 }
 #BB1 Spring 25
-fid<-"https://drive.google.com/drive/folders/1p_UJiXMv5u_cSL9V-tcqvwIKI-jAgAHw"
+fid<-"https://drive.google.com/drive/u/0/folders/1oNIcQi-wXeCWeKiJhfNlcalXD5unJaJJ"
 folder_id = drive_get(as_id(fid))
 files =drive_ls(folder_id)
 
