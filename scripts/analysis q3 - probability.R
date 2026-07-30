@@ -60,11 +60,12 @@ glmm.resids<-function(model){
 }
 
 # binomial model
-log.mod<-glmmTMB(binary.dolphins~do.mg.l*sal.ppt+do.mg.l*temp.c+sal.ppt*temp.c,
+log.mod<-glmmTMB(binary.dolphins~do.mg.l*sal.ppt+
+                   sal.ppt*temp.c+location+bay,
                  data=dts,
                  family=binomial)
 glmm.resids(log.mod)
 
 summary(log.mod)
 
-plot(ggeffect(log.mod,terms=c("do.mg.l","temp.c")))
+plot(ggeffect(log.mod,terms=c("sal.ppt","do.mg.l")))
