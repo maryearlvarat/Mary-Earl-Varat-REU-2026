@@ -4,7 +4,8 @@
 library(tidyverse)
 library(car)
 library(lmerTest)
-
+library(glmmTMB)
+library(DHARMa)
 # load data----
 fls<-list.files("wdata",pattern="combined")
 fls<-paste0("wdata/",fls)
@@ -39,3 +40,12 @@ q3.m1<-lmer(detection.minutes~sal.sc*do.sc*temp.sc+location+bay+
 
 plot(q3.m1)
 summary(q3.m1)
+
+#trying zero inflated model
+
+q3.m2<-glmmTMB(detection.minutes~sal.sc*do.sc*temp.sc+location+bay+
+                 (1|season),data=dts)
+plot(q3.m2)
+residuals<-simulateResiduals(q3.m2)
+testZeroInflation(residuals)
+testDispersion(residuals)

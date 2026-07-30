@@ -69,22 +69,47 @@ BB1fall24.seltables<-getseltimes(deploy="BB1_Fall2024",
 
 write.csv(BB1fall24.seltables,"wdata/BB1fall24_dolphins.csv",row.names = F)
 
+# Calculate the grand total
+total_minutes <- sum(BB1fall24_dolphins$detection.minutes, na.rm = TRUE)
+
+# Print the result
+print(total_minutes)
+
 #BB1 Summer 25
 BB1summer25.seltables<-getseltimes(deploy="BB1_Summer25",
                               strt.dt<-ymd_hms("2025-07-21 18:00:00",tz="America/Chicago"),
                               end.dt<-ymd_hms("2025-08-04 08:00:00",tz="America/Chicago"))
 write.csv(BB1summer25.seltables,"wdata/BB1summer25_dolphins.csv",row.names = F)
+
+
+# Calculate the grand total
+total_minutes <- sum(BB1summer25_dolphins$detection.minutes, na.rm = TRUE)
+
+# Print the result
+print(total_minutes)
+
 #BB1 Winter 25
 BB1winter25.seltables<-getseltimes(deploy="BB1_Winter25",
-                                strt.dt<-ymd_hms("2025-01-29 18:00:00",tz="America/Chicago"),
-                                end.dt<-ymd_hms("2025-02-17 08:00:00",tz="America/Chicago"))
+                                strt.dt<-ymd_hms("2025-01-29 18:00:00",tz="America/Chicago"),                               end.dt<-ymd_hms("2025-02-17 08:00:00",tz="America/Chicago"))
 write.csv(BB1winter25.seltables,"wdata/BB1winter25_dolphins.csv",row.names = F)
+
+# Calculate the grand total
+total_minutes <- sum(BB1winter25_dolphins$detection.minutes, na.rm = TRUE)
+
+# Print the result
+print(total_minutes)
 
 #BB1 Spring 25
 BB1spring25.seltables<-getseltimes(deploy="BB1_Spring25",
                                 strt.dt<-ymd_hms("2025-04-14 18:00:00",tz="America/Chicago"),
                                 end.dt<-ymd_hms("2025-04-28 08:00:00",tz="America/Chicago"))
 write.csv(BB1spring25.seltables,"wdata/BB1spring25_dolphins.csv",row.names = F)
+
+# Calculate the grand total
+total_minutes <- sum(BB1spring25_dolphins$detection.minutes, na.rm = TRUE)
+
+# Print the result
+print(total_minutes)
 
 #BB2 
 #BB2 Fall 24
@@ -94,16 +119,32 @@ BB2fall24.seltables<-getseltimes(deploy="BB2_Fall24",
 
 write.csv(BB2fall24.seltables,"wdata/BB2fall24_dolphins.csv",row.names = F)
 
+# Calculate the grand total
+total_minutes <- sum(BB2fall24_dolphins$detection.minutes, na.rm = TRUE)
+
+# Print the result
+print(total_minutes)
+
 #BB2 Summer 25
 BB2summer25.seltables<-getseltimes(deploy="BB2_Summer25",
                                    strt.dt<-ymd_hms("2025-07-22 18:00:00",tz="America/Chicago"),
                                    end.dt<-ymd_hms("2025-08-04 08:00:00",tz="America/Chicago"))
 write.csv(BB2summer25.seltables,"wdata/BB2summer25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(BB2summer25_dolphins$detection.minutes, na.rm = TRUE)
+
+# Print the result
+print(total_minutes)
+
 #BB2 Winter 25
 BB2winter25.seltables<-getseltimes(deploy="BB2_Winter25",
                                    strt.dt<-ymd_hms("2025-01-29 18:00:00",tz="America/Chicago"),
                                    end.dt<-ymd_hms("2025-02-17 08:00:00",tz="America/Chicago"))
 write.csv(BB2winter25.seltables,"wdata/BB2winter25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(BB2winter25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
 
 #BB2 Spring 25
 BB2spring25.seltables<-getseltimes(deploy="BB2_Spring25",
@@ -111,28 +152,54 @@ BB2spring25.seltables<-getseltimes(deploy="BB2_Spring25",
                                    end.dt<-ymd_hms("2025-04-28 08:00:00",tz="America/Chicago"))
 write.csv(BB2spring25.seltables,"wdata/BB2spring25_dolphins.csv",row.names = F)
 
+# Calculate the grand total
+total_minutes <- sum(BB2spring25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
+
+
 #LUMO6 
 #LUMO6 summer 25
 LUMO6summer25.seltables<-getseltimes(deploy="LUMO6_summer25",
                                    strt.dt<-ymd_hms("2025-07-28 18:00:00",tz="America/Chicago"),
                                    end.dt<-ymd_hms("2025-08-11 08:00:00",tz="America/Chicago"))
 write.csv(LUMO6summer25.seltables,"wdata/LUMO6summer25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(LUMO6summer25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
+
+
 #LUMO6 winter 25 
 LUMO6winter25.seltables<-getseltimes(deploy="LUMO6_winter25",
                                      strt.dt<-ymd_hms("2025-01-27 18:00:00",tz="America/Chicago"),
                                      end.dt<-ymd_hms("2025-02-10 08:00:00",tz="America/Chicago"))
 write.csv(LUMO6winter25.seltables,"wdata/LUMO6winter25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(LUMO6winter25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
 
 #LUMO6 fall 24 
 LUMO6fall24.seltables<-getseltimes(deploy="LUMO6_fall24",
                                      strt.dt<-ymd_hms("2024-09-23 18:00:00",tz="America/Chicago"),
                                      end.dt<-ymd_hms("2024-10-07 08:00:00",tz="America/Chicago"))
 write.csv(LUMO6fall24.seltables,"wdata/LUMO6fall24_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(LUMO6fall24_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
+
+
 #LUMO6 Spring 25
 LUMO6spring25.seltables<-getseltimes(deploy="LUMO6_spring25",
                                    strt.dt<-ymd_hms("2024-04-01 18:00:00",tz="America/Chicago"),
                                    end.dt<-ymd_hms("2024-04-16 08:00:00",tz="America/Chicago"))
 write.csv(LUMO6spring25.seltables,"wdata/LUMO6spring25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(LUMO6spring25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
 
 #TB1
 #TB1 Summer 25
@@ -140,8 +207,17 @@ TB1summer25.seltables<-getseltimes(deploy="TB1_summer25",
                                      strt.dt<-ymd_hms("2024-07-28 18:00:00",tz="America/Chicago"),
                                      end.dt<-ymd_hms("2024-08-11 08:00:00",tz="America/Chicago"))
 write.csv(TB1summer25.seltables,"wdata/TB1summer25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(TB1summer25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
+
 #TB1 Winter 25
 TB1winter25.seltables<-getseltimes(deploy="TB1_winter25",
                                    strt.dt<-ymd_hms("2024-01-27 18:00:00",tz="America/Chicago"),
                                    end.dt<-ymd_hms("2024-02-10 08:00:00",tz="America/Chicago"))
 write.csv(TB1winter25.seltables,"wdata/TB1winter25_dolphins.csv",row.names = F)
+# Calculate the grand total
+total_minutes <- sum(TB1winter25_dolphins$detection.minutes, na.rm = TRUE)
+# Print the result
+print(total_minutes)
