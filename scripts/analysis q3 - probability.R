@@ -69,5 +69,24 @@ glmm.resids(log.mod)
 summary(log.mod)
 
 plot(ggeffect(log.mod,terms=c("sal.ppt","do.mg.l")))+
-ggplot2::scale_color_manual(values = c("#BEBBFC", "#3127F5", "#0B0570"))+
-ggplot2::scale_fill_manual(values = c("#BEBBFC", "#3127F5", "#0B0570"))
+ggplot2::scale_color_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0B0570"))+
+ggplot2::scale_fill_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0B0570"))+
+  ylab("Probability of detecting a dolphin")+
+  xlab("Salinity (ppt)")+
+  theme(panel.grid = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=14))+
+  ggtitle("")
+
+
+plot(ggeffect(log.mod,terms=c("location")))+
+  ylab("Probability of detecting a dolphin")+
+  ggtitle("")
+
+plot(ggeffect(log.mod,terms=c("bay")))+
+  ylab("Probability of detecting a dolphin")+
+  ggtitle("")
+
+plot(ggeffect(log.mod,terms=c("temp.c")))+
+  ylab("Probability of detecting a dolphin")+
+  ggtitle("")

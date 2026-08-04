@@ -2,14 +2,15 @@
 # load packages
 #load packages----
 source("scripts/install_packages_function.R")
+lp("jtools")
 lp("tidyverse")
 lp("glmmTMB")
 lp("DHARMa")
 lp("ggeffects")
 lp("vegan")
 lp("interactions")
-lp("ggplot2")
-lp("jtools")
+
+
 # load data
 fls<-list.files(path="wdata",pattern="env")
 fls2<-data.frame(fls=fls,fpath=paste0("wdata/",fls))%>%
@@ -34,8 +35,8 @@ env<-env|>
            mnth %in% c(6,7,8)~"Summer",
            mnth %in% c(9,10,11)~"Fall"),
          yr2=ifelse(yr %in% c(2017,2018),2018,2025),
-         location=ifelse(site %in% c("BB1","TB1"),"Outer","Inner"),
-         bay=ifelse(site %in% c("BB1","BB2"),"Barataria","Terrebonne"))
+         location=ifelse(site %in% c("bb1","tb1"),"Outer","Inner"),
+         bay=ifelse(site %in% c("bb1","bb2"),"Barataria","Terrebonne"))
 
 env.new<- env %>%
   filter(yr2!=2018)
@@ -60,10 +61,36 @@ plot(sal)
 
 cat_plot(q2.sal.m1, pred=bay,modx=location, colors = c("#BEBBFC","#3127F5" ))+
   ggplot2::labs(title = "Salinity across Locations")
-        
+       
+q2sal.lb<-ggeffect(q2.sal.m1,terms=c("location","bay"))
+plot(q2sal.lb)
 
+ggplot(data=q2sal.lb)+
+  geom_errorbar(aes(x=x,ymin=predicted-std.error,ymax=predicted+std.error),width=.1)+
+  geom_point(aes(x=x,y=predicted,color=group),size=4)+
+  ggtitle("Salinity across bays and locations")+
+  ylab("Salinity (ppt)")+
+  xlab("")
 
-#ggplot(data=env.new, aes(x=location, y=sal.ppt, fill=bay))+
+sal.sum<-env.new|>
+  filter(!is.na(sal.ppt))|>
+  group_by(bay,location)|>
+  summarize(m.sal=mean(sal.ppt),
+            se.sal=sd(sal.ppt)/sqrt(n()+1))
+
+ggplot(data=sal.sum)+
+  geom_errorbar(aes(x=location,ymin=m.sal-se.sal,ymax=m.sal+se.sal,color=bay),width=.5,position = position_dodge(0.9))+
+  geom_bar(aes(x=location,y=m.sal,fill=bay),position=position_dodge(0.9),stat="identity")+
+  ylab("Salinity (ppt)")+
+  xlab("")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        axis.title=element_text(size=18),
+        axis.text=element_text(size=14),
+        legend.text = elem)+
+  scale_color_viridis_d(option="B",begin=.4,end=.6,name="Bay")+
+  scale_fill_viridis_d(option="B",begin=.4,end=.6,name="Bay")
+  #ggplot(data=env.new, aes(x=location, y=sal.ppt, fill=bay))+
   #geom_boxplot(position=position_dodge(width=0.8))+
   #scale_x_discrete(name="Location")+
   #scale_y_continuous(name="Salinity (ppt)")+
