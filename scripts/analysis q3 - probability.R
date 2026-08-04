@@ -68,4 +68,6 @@ glmm.resids(log.mod)
 
 summary(log.mod)
 
-plot(ggeffect(log.mod,terms=c("sal.ppt","do.mg.l")))
+plot(ggeffect(log.mod,terms=c("sal.ppt","do.mg.l")))+
+ggplot2::scale_color_manual(values = c("#BEBBFC", "#3127F5", "#0B0570"))+
+ggplot2::scale_fill_manual(values = c("#BEBBFC", "#3127F5", "#0B0570"))

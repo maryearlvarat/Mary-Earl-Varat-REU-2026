@@ -76,3 +76,22 @@ ggplot(data=obs.sum)+
            position=position_dodge())+
   scale_x_continuous(name="Salinity",
                      breaks=c(1,2,3),labels = c("< 5","5-11",">11"))
+ggplot(data=obs.sum)+
+  geom_bar(aes(x=sal.group,y=per.detections,fill=bay),
+           stat="identity",
+           position=position_dodge())+
+  scale_x_continuous(name="Salinity (ppt)",
+                     breaks=c(1,2,3),
+                     labels = c("< 5","5-11",">11"))+
+  scale_y_continuous(name="Percent of Detections")+
+  scale_fill_manual(name="Bay",
+                    values=c("Barataria - 2017/2018"="#BEBBFC",
+                             "Barataria"="#3127F5",
+                             "Terrebonne"="#0B0570"))+
+  labs(title="Dolphin Detections by Salinity Group")+
+  theme_minimal()+
+  theme(
+    axis.text = element_text(size=12)
+    
+  )
+
