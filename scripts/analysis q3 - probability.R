@@ -67,8 +67,8 @@ log.mod<-glmmTMB(binary.dolphins~do.mg.l*sal.ppt+
 glmm.resids(log.mod)
 
 summary(log.mod)
-
-plot(ggeffect(log.mod,terms=c("sal.ppt","do.mg.l")))+
+saldo<-ggeffect(log.mod,terms=c("sal.ppt","do.mg.l"))
+plot(saldo)+
 ggplot2::scale_color_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0B0570"))+
 ggplot2::scale_fill_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0B0570"))+
   ylab("Probability of detecting a dolphin")+
@@ -77,6 +77,26 @@ ggplot2::scale_fill_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0
         axis.text = element_text(size=14),
         axis.title = element_text(size=14))+
   ggtitle("")
+
+ggplot()+
+  geom_ribbon(aes(x=x,ymin=conf.low,ymax=conf.high,fill=group),
+              data=saldo,
+              alpha=.2)+
+  geom_line(aes(x=x,y=predicted,color=group),
+            data=saldo)+
+  ylab(ylab)+
+  scale_color_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0B0570"))+
+  scale_fill_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0B0570"))+
+  ylab("Probability of detecting a dolphin")+
+  xlab("Salinity (ppt)")+
+  theme_bw()+
+  theme(panel.grid = element_blank(),
+        axis.text = element_text(size=14),
+        axis.title = element_text(size=18),
+        legend.text=element_text(size=14),
+        legend.title = element_text(size=18))+
+  scale_y_continuous(breaks=c(0,0.1,0.2,0.3,0.4),
+                     labels=c("0","10%","20%","30%","40%"))
 ggsave("figures/SalandDO PODt.jpeg",width=7, height=6)
 
 #plot for location
@@ -143,3 +163,5 @@ plot(ggeffect(log.mod,terms=c("temp.c")))+
   ylab("Probability of detecting a dolphin")+
   ggtitle("")
 scale_color_manual(values=c("#BEBBFC", "#3127F5"))
+
+
