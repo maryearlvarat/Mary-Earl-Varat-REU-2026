@@ -77,16 +77,69 @@ ggplot2::scale_fill_manual(name="DO (mg/l)",values = c("#BEBBFC", "#3127F5", "#0
         axis.text = element_text(size=14),
         axis.title = element_text(size=14))+
   ggtitle("")
+ggsave("figures/SalandDO PODt.jpeg",width=7, height=6)
+
+#plot for location
+eff <- ggeffect(log.mod, terms = "location")
+eff_df <- as.data.frame(eff)
+
+ggplot(eff_df, aes(x = x, y = predicted, color = x)) +
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high), size = 1) +
+  ylab("Probability of detecting a dolphin") +
+  xlab("") +
+  scale_color_manual(values = c("#BEBBFC","#3127F5","#...")) +
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        axis.title=element_text(size=18),
+        axis.text=element_text(size=16),
+        legend.position = "none")
+ggsave("figures/Loc POD.jpeg",width=7, height=6)
+
+#plot for bay
+eff <- ggeffect(log.mod, terms = "bay")
+eff_df <- as.data.frame(eff)
+
+ggplot(eff_df, aes(x = x, y = predicted, color = x)) +
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high), size = 1) +
+  ylab("Probability of detecting a dolphin") +
+  xlab("") +
+  scale_color_manual(values = c("#BEBBFC","#3127F5","#...")) +
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        axis.title=element_text(size=18),
+        axis.text=element_text(size=16),
+        legend.position = "none")
+ggsave("figures/Bay POD.jpeg",width=7, height=6)
+
+#plot for temp.c
+
+eff_df$x <- factor(eff_df$x)
+
+ggplot(eff_df, aes(x = x, y = predicted, color = x)) +
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high), size = 1) +
+  ylab("Probability of detecting a dolphin") +
+  xlab("") +
+  scale_color_manual(values = c("#BEBBFC","#948EFA","#6A62F8","#4036F7","#160AF5","#1208C9")) +
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        axis.title=element_text(size=12),
+        axis.text=element_text(size=10),
+        legend.position = "none")
+
+ggsave("figures/Temp POD.jpeg", width=7, height=6)
 
 
+#cant change these colors
 plot(ggeffect(log.mod,terms=c("location")))+
   ylab("Probability of detecting a dolphin")+
-  ggtitle("")
+  ggtitle("")+
+  scale_color_manual(values=c("#BEBBFC", "#3127F5"))
 
-plot(ggeffect(log.mod,terms=c("bay")))+
+plot(ggeffect(log.mod,terms=c("Bay")))+
   ylab("Probability of detecting a dolphin")+
   ggtitle("")
 
 plot(ggeffect(log.mod,terms=c("temp.c")))+
   ylab("Probability of detecting a dolphin")+
   ggtitle("")
+scale_color_manual(values=c("#BEBBFC", "#3127F5"))

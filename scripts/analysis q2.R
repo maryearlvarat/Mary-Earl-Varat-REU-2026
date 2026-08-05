@@ -35,8 +35,8 @@ env<-env|>
            mnth %in% c(6,7,8)~"Summer",
            mnth %in% c(9,10,11)~"Fall"),
          yr2=ifelse(yr %in% c(2017,2018),2018,2025),
-         location=ifelse(site %in% c("bb1","tb1"),"Outer","Inner"),
-         bay=ifelse(site %in% c("bb1","bb2"),"Barataria","Terrebonne"))
+         location=ifelse(site %in% c("BB1","TB1"),"Outer","Inner"),
+         bay=ifelse(site %in% c("BB1","BB2"),"Barataria","Terrebonne"))
 
 env.new<- env %>%
   filter(yr2!=2018)
@@ -59,8 +59,8 @@ summary(q2.sal.m1)
 sal<-ggpredict(q2.sal.m1)
 plot(sal)
 
-cat_plot(q2.sal.m1, pred=bay,modx=location, colors = c("#BEBBFC","#3127F5" ))+
-  ggplot2::labs(title = "Salinity across Locations")
+#cat_plot(q2.sal.m1, pred=bay,modx=location, colors = c("#BEBBFC","#3127F5" ))+
+  #ggplot2::labs(title = "Salinity across Locations")
        
 q2sal.lb<-ggeffect(q2.sal.m1,terms=c("location","bay"))
 plot(q2sal.lb)
@@ -87,22 +87,10 @@ ggplot(data=sal.sum)+
   theme(panel.grid=element_blank(),
         axis.title=element_text(size=18),
         axis.text=element_text(size=14),
-        legend.text = elem)+
+        legend.text = element_text(size=14))+
   scale_color_viridis_d(option="B",begin=.4,end=.6,name="Bay")+
   scale_fill_viridis_d(option="B",begin=.4,end=.6,name="Bay")
-  #ggplot(data=env.new, aes(x=location, y=sal.ppt, fill=bay))+
-  #geom_boxplot(position=position_dodge(width=0.8))+
-  #scale_x_discrete(name="Location")+
-  #scale_y_continuous(name="Salinity (ppt)")+
-  #scale_fill_manual(name="Bay",
-                    #values=c("Barataria"="#BEBBFC",
-                             #"Terrebonne"="#3127F5"))+
-  #labs(title="Salinity by Location and Bay")+
-  #theme_minimal()+
-  #theme(
-    #axis.text = element_text(size=12)
-    
-  #) 
+  
 summary(q2.sal.m1)
 
 #model with new  DO

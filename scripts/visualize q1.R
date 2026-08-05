@@ -65,7 +65,7 @@ ter.ob1<-dts%>%
   mutate(bay="Terrebonne")
 
 his.obs<-data.frame(sal.group=c(1,2,3),
-                    per.detections=c(25,50,25),
+                    per.detections=c(1,9,90),
                     sal.per.detection=NA,bay="Barataria - 2017/2018")
 obs.sum<-bind_rows(bar.ob1,ter.ob1,his.obs)
 
@@ -94,4 +94,5 @@ ggplot(data=obs.sum)+
     axis.text = element_text(size=12)
     
   )
+obs.sum %>% select(bay, sal.group, per.detections)
 

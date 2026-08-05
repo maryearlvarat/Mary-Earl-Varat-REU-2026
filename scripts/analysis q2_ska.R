@@ -52,15 +52,15 @@ glmm.resids<-function(model){
   print(testDispersion(t1))
   plot(t1)
 }
-#model with  new sal 
+#MODEL WITH NEW SAL
 q2.sal.m1<-glmmTMB(sal.ppt~location*bay+(1|season),data=env.new)
 glmm.resids(q2.sal.m1)
 summary(q2.sal.m1)
 sal<-ggpredict(q2.sal.m1)
 plot(sal)
 
-cat_plot(q2.sal.m1, pred=bay,modx=location, colors = c("#BEBBFC","#3127F5" ))+
-  ggplot2::labs(title = "Salinity across Locations")
+#cat_plot(q2.sal.m1, pred=bay,modx=location, colors = c("#BEBBFC","#3127F5" ))+
+  #ggplot2::labs(title = "Salinity across Locations")
        
 q2sal.lb<-ggeffect(q2.sal.m1,terms=c("location","bay"))
 plot(q2sal.lb)
@@ -90,50 +90,84 @@ ggplot(data=sal.sum)+
         axis.text=element_text(size=14),
         legend.text = element_text(size=14),
         legend.title=element_text(size=18))+
-  scale_color_viridis_d(option="B",begin=.4,end=.6,name="Bay")+
-  scale_fill_viridis_d(option="B",begin=.4,end=.6,name="Bay")
-  #ggplot(data=env.new, aes(x=location, y=sal.ppt, fill=bay))+
-  #geom_boxplot(position=position_dodge(width=0.8))+
-  #scale_x_discrete(name="Location")+
-  #scale_y_continuous(name="Salinity (ppt)")+
-  #scale_fill_manual(name="Bay",
-                    #values=c("Barataria"="#BEBBFC",
-                             #"Terrebonne"="#3127F5"))+
-  #labs(title="Salinity by Location and Bay")+
-  #theme_minimal()+
-  #theme(
-    #axis.text = element_text(size=12)
-    
-  #) 
+  scale_color_manual(name="Bay",values=c("Barataria"="#BEBBFC", "Terrebonne"="#3127F5"))
+ggsave("figures/SAL q2 plot.jpeg",width=7, height=6)
+
+  
+  
 summary(q2.sal.m1)
 
-#model with new  DO
+#MODEL WITH NEW DO
 q2.do.m1<-glmmTMB(do.mg.l~bay+(1|season),data=env.new.nodo)
 glmm.resids(q2.do.m1)
 summary(q2.do.m1)
 do<-ggpredict(q2.do.m1)
 plot(do)
 
-cat_plot(q2.do.m1, pred=bay,colors = c("#BEBBFC","#3127F5"))
+q2do.lb<-ggeffect(q2.do.m1,terms=c("bay"))
+plot(q2do.lb)
 
-#p <- cat_plot(q2.do.m1, pred = bay)
-#p + ggplot2::scale_fill_manual(values = c("#BEBBFC", "#3127F5")) +
-  ggplot2::scale_color_manual(values = c("#BEBBFC", "#3127F5" ))
+do.sum<-env.new|>
+  filter(!is.na(do.mg.l))|>
+  group_by(bay)|>
+  summarize(m.do=mean(do.mg.l),
+            se.do=sd(do.mg.l)/sqrt(n()+1))
 
-effect_plot(q2.do.m1, pred = bay, colors = c("#BEBBFC", "#3127F5"), interval = TRUE)+
-  ggplot2::labs(title = "Dissolved Oxygen across Locations")
+  ggplot(data=do.sum)+
+    geom_errorbar(aes(x=bay,ymin=m.do-se.do,ymax=m.do+se.do, color=bay),width=.5,position = position_dodge(0.9))+
+    # geom_bar(aes(x=location,y=m.sal,fill=bay),position=position_dodge(0.9),stat="identity")+
+    geom_point(aes(x=bay,y=m.do, color=bay),size=4,position=position_dodge(0.9))+
+    ylab("Dissolved Oxygen (do.mg.L)")+
+    xlab("")+
+    theme_bw()+
+    theme(panel.grid=element_blank(),
+          axis.title=element_text(size=18),
+          axis.text=element_text(size=14),
+          legend.text = element_text(size=14),
+          legend.title=element_text(size=18))+
+    scale_color_manual(name="Bay",values=c("Barataria"="#BEBBFC", "Terrebonne"="#3127F5"))
+  ggsave("figures/DO q2 plot.jpeg",width=7, height=6)
+  
 
-
-
-#model with new  temp 
+#MODEL WITH NEW TEMP 
 q2.temp.m1<-glmmTMB(temp.c~location*bay+(1|season),data=env.new)
 glmm.resids(q2.temp.m1)
 summary(q2.temp.m1)
 temp<-ggpredict(q2.temp.m1)
 plot(temp)
 
-cat_plot(q2.temp.m1, pred=bay,modx=location,colors = c("#BEBBFC","#3127F5" ))+
-  ggplot2::labs(title = "Temperature across Locations")
-summary(q2.temp.m1)
+
+
+q2temp.lb<-ggeffect(q2.temp.m1,terms=c("location","bay"))
+plot(q2temp.lb)
+
+ggplot(data=q2temp.lb)+
+  geom_errorbar(aes(x=x,ymin=predicted-std.error,ymax=predicted+std.error),width=.1)+
+  geom_point(aes(x=x,y=predicted,color=group),size=4)+
+  ggtitle("Temperature across bays and locations")+
+  ylab("Temperature (C)")+
+  xlab("")
+
+temp.sum<-env.new|>
+  filter(!is.na(temp.c))|>
+  group_by(bay,location)|>
+  summarize(m.temp.c=mean(temp.c),
+            se.temp.c=sd(temp.c)/sqrt(n()+1))
+
+ggplot(data=temp.sum)+
+  geom_errorbar(aes(x=location,ymin=m.temp.c-se.temp.c,ymax=m.temp.c+se.temp.c,color=bay),width=.5,position = position_dodge(0.9))+
+  # geom_bar(aes(x=location,y=m.temp,fill=bay),position=position_dodge(0.9),stat="identity")+
+  geom_point(aes(x=location,y=m.temp.c,color=bay),size=4,position=position_dodge(0.9))+
+  ylab("Temperature (C)")+
+  xlab("")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        axis.title=element_text(size=18),
+        axis.text=element_text(size=14),
+        legend.text = element_text(size=14),
+        legend.title=element_text(size=18))+
+  scale_color_manual(name= "Bay",values=c("Barataria"="#BEBBFC", "Terrebonne"="#3127F5"))
+ggsave("figures/TEMP q2 plot.jpeg",width=7, height=6)
+
 
 
