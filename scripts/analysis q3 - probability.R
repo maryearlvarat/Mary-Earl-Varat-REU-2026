@@ -50,6 +50,14 @@ ggplot(data=dts)+
 
 ggplot(data=dts)+
   geom_point(aes(x=temp.c,y=binary.dolphins))
+#BOXplot for temp and dolphin det. 
+ggplot(data=dts)+
+  geom_boxplot(aes(x=binary.dolphins,y=temp.c),fill="#BEBBFC")+
+  ylab("Temperature")+
+  xlab("Dolphin Detections")+
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+ 
 
 pairs(dts[,c(7:9)])
 
