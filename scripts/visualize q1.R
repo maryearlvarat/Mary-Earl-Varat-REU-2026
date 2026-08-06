@@ -68,6 +68,13 @@ his.obs<-data.frame(sal.group=c(1,2,3),
                     per.detections=c(1,9,90),
                     sal.per.detection=NA,bay="Barataria - 2017/2018")
 obs.sum<-bind_rows(bar.ob1,ter.ob1,his.obs)
+obs.sum$bay<-factor(obs.sum$bay,
+                    levels=c("Barataria - 2017/2018",
+                             "Barataria",
+                             "Terrebonne"),
+                    labels=c("Barataria - 2017/2018",
+                             "Barataria - 2024/2025",
+                             "Terrebonne - 2024/2025"))
 
 
 ggplot(data=obs.sum)+
@@ -86,12 +93,14 @@ ggplot(data=obs.sum)+
   scale_y_continuous(name="Percent of Detections")+
   scale_fill_manual(name="Bay",
                     values=c("Barataria - 2017/2018"="#BEBBFC",
-                             "Barataria"="#3127F5",
-                             "Terrebonne"="#0B0570"))+
-  labs(title="Dolphin Detections by Salinity Group")+
-  theme_minimal()+
+                             "Barataria - 2024/2025"="#3127F5",
+                             "Terrebonne - 2024/2025"="#0B0570"))+
+  # labs(title="Dolphin Detections by Salinity Group")+
+  theme_bw()+
   theme(
-    axis.text = element_text(size=12)
+    axis.text = element_text(size=14),
+    panel.grid=element_blank(),
+    axis.title=element_text(size=18)
     
   )
 obs.sum %>% select(bay, sal.group, per.detections)
