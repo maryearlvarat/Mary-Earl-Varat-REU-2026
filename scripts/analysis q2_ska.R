@@ -127,7 +127,7 @@ do.sum<-env.new|>
           legend.title=element_text(size=18))+
     scale_color_manual(name="Bay",values=c("Barataria"="#BEBBFC", "Terrebonne"="#3127F5"))
   ggsave("figures/DO q2 plot.jpeg",width=7, height=6)
-  
+summary(q2.do.m1) 
 
 #MODEL WITH NEW TEMP 
 q2.temp.m1<-glmmTMB(temp.c~location*bay+(1|season),data=env.new)
@@ -168,6 +168,7 @@ ggplot(data=temp.sum)+
         legend.title=element_text(size=18))+
   scale_color_manual(name= "Bay",values=c("Barataria"="#BEBBFC", "Terrebonne"="#3127F5"))
 ggsave("figures/TEMP q2 plot.jpeg",width=7, height=6)
+summary(q2.temp.m1) 
 
 
 
