@@ -35,8 +35,8 @@ env<-env|>
            mnth %in% c(6,7,8)~"Summer",
            mnth %in% c(9,10,11)~"Fall"),
          yr2=ifelse(yr %in% c(2017,2018),2018,2025),
-         location=ifelse(site %in% c("BB1","TB1"),"Outer","Inner"),
-         bay=ifelse(site %in% c("BB1","BB2"),"Barataria","Terrebonne"))
+         location=ifelse(site %in% c("BB1","bb1","TB1","tb1"),"Outer","Inner"),
+         bay=ifelse(site %in% c("BB1","BB2","bb1","bb2"),"Barataria","Terrebonne"))
 
 env.new<- env %>%
   filter(yr2!=2018)
@@ -94,7 +94,7 @@ ggplot(data=sal.sum)+
 summary(q2.sal.m1)
 
 #model with new  DO
-q2.do.m1<-glmmTMB(do.mg.l~bay+(1|season),data=env.new.nodo)
+q2.do.m1<-glmmTMB(do.mg.l~bay+location+(1|season),data=env.new.nodo)
 glmm.resids(q2.do.m1)
 summary(q2.do.m1)
 do<-ggpredict(q2.do.m1)
